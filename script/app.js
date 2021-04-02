@@ -19,6 +19,7 @@ const initializeCards = (cards) => {
     createCardContent(FRONT, card, cardElement);
     createCardContent(BACK, card, cardElement);
 
+    cardElement.addEventListener('click', flipped);
     gameBoard.appendChild(cardElement);
   });
 };
@@ -28,11 +29,21 @@ const createCardContent = (face, card, cardElement) => {
   cardElementFace.classList.add(face);
 
   if (face == FRONT) {
-    cardElementFace.innerHTML += `<img src="images/${card.name}.jpg" class="${FRONT}"/>`;
+    let cardFaceFront = document.createElement('img');
+    cardFaceFront.src = './images/' + card.name + '.jpg';
+    cardElementFace.appendChild(cardFaceFront);
   } else {
-    cardElementFace.innerHTML += `<img src="./images/pokeball.png" width="100px" class="${BACK}"/>`;
+    let cardFaceBack = document.createElement('img');
+    cardFaceBack.src = './images/pokeball.png';
+    cardElementFace.appendChild(cardFaceBack);
   }
 
   cardElement.appendChild(cardElementFace);
 };
+
+const flipped = (event) => {
+  let current = event.currentTarget;
+  current.classList.add('flip');
+};
+
 startGame();

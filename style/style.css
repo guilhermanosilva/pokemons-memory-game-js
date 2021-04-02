@@ -1,5 +1,4 @@
 :root {
-  --color-black: #151520;
   --color-blue: #468faf;
   --color-blue-2: #367996;
 }
@@ -7,7 +6,6 @@
 * {
   margin: 0;
   padding: 0;
-  /* overflow: hidden; */
   box-sizing: border-box;
 }
 
@@ -36,30 +34,49 @@ body {
 }
 
 .card {
-  background-color: #ffffff;
+  background-color: white;
   box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.4);
   width: 7rem;
   height: 7rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
 
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  -webkit-transition: transform 0.5s;
+  transition: transform 0.8s;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.card img {
+  width: 70%;
 }
 
 .card-front,
 .card-back {
   position: absolute;
-  width: 80%;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card-front {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
 .card-back {
-  background-color: #ffffff;
-  width: 95%;
-  /* visibility: hidden; */
+  width: 90%;
+}
+
+.flip {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
