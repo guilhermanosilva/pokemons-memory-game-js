@@ -1,4 +1,8 @@
 let game = {
+  cards: null,
+  lockMode: false,
+  firstCard: null,
+  secondCard: null,
   pokemons: [
     'bulbasaur',
     'butterfree',
@@ -13,15 +17,15 @@ let game = {
   ],
 
   createCards: function () {
-    let cards = this.pokemons.map((pokemon) => {
+    this.cards = this.pokemons.map((pokemon) => {
       return this.createPairFromCards(pokemon);
     });
 
-    cards = cards.flatMap((card) => card);
+    this.cards = this.cards.flatMap((card) => card);
 
-    this.shuffleCards(cards);
+    this.shuffleCards(this.cards);
 
-    return cards;
+    return this.cards;
   },
 
   createPairFromCards: function (pokemon) {
@@ -29,12 +33,12 @@ let game = {
       {
         id: this.generateId(pokemon),
         name: pokemon,
-        fippled: false,
+        flipped: false,
       },
       {
         id: this.generateId(pokemon),
         name: pokemon,
-        fippled: false,
+        flipped: false,
       },
     ];
   },
@@ -57,5 +61,43 @@ let game = {
 
       currentIndex++;
     }
+  },
+
+  setCards: function (id) {
+    let card = this.cards.filter((card) => card.id === id)[0];
+
+    if (this.lockMode || card.flipped) {
+      return false;
+    }
+
+    if (!this.firstCard) {
+      this.firstCard = card;
+      this.firstCard.flipped = true;
+      return true;
+    } else {
+      this.secondCard = card;
+      this.secondCard.flipped = true;
+      this.lockMode = true;
+      return true;
+    }
+  },
+
+  checkMatch: function () {
+    if (!this.firstCard || !this.secondCard) {
+      return false;
+    }
+    return this.firstCard.name === this.secondCard.name;
+  },
+
+  clearCards: function () {
+    this.firstCard = null;
+    this.secondCard = null;
+    this.lockMode = false;
+  },
+
+  unflipCards: function () {
+    this.firstCard.flipped = false;
+    this.secondCard.flipped = false;
+    this.clearCards();
   },
 };

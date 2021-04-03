@@ -45,8 +45,8 @@ body {
   justify-content: center;
   align-items: center;
 
-  -webkit-transition: transform 0.5s;
-  transition: transform 0.8s;
+  -webkit-transition: transform 0.4s;
+  transition: transform 0.4s;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }

@@ -43,7 +43,25 @@ const createCardContent = (face, card, cardElement) => {
 
 const flipped = (event) => {
   let current = event.currentTarget;
-  current.classList.add('flip');
+
+  if (game.setCards(current.id)) {
+    current.classList.add('flip');
+  }
+
+  if (game.secondCard) {
+    if (game.checkMatch()) {
+      game.clearCards();
+    } else {
+      setTimeout(() => {
+        let firstCardDOM = document.getElementById(game.firstCard.id);
+        let secondCardDOM = document.getElementById(game.secondCard.id);
+
+        firstCardDOM.classList.remove('flip');
+        secondCardDOM.classList.remove('flip');
+        game.unflipCards();
+      }, 1000);
+    }
+  }
 };
 
 startGame();
