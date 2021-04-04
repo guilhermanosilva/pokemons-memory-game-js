@@ -71,4 +71,15 @@ const flipped = (event) => {
   }
 };
 
+const restartGame = () => {
+  const gameBoard = document.querySelector('#gameBoard');
+  const gameOverLayer = document.querySelector('#gameFinish');
+  gameBoard.style.filter = 'none';
+  gameOverLayer.style.display = 'none';
+  startGame();
+};
+
+const restart = document.querySelector('#restartGame');
+restart.addEventListener('click', restartGame);
+
 startGame();
