@@ -50,6 +50,7 @@ const flipped = (event) => {
 
   if (game.secondCard) {
     if (game.checkMatch()) {
+      if (game.checkWinner()) console.log('Winner!');
       game.clearCards();
     } else {
       setTimeout(() => {

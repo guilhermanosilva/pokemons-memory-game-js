@@ -100,4 +100,8 @@ let game = {
     this.secondCard.flipped = false;
     this.clearCards();
   },
+
+  checkWinner: function () {
+    return this.cards.filter((card) => !card.flipped).length == 0;
+  },
 };
