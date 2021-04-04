@@ -1,6 +1,8 @@
 :root {
+  --color-black: #03151d;
   --color-blue: #468faf;
-  --color-blue-2: #367996;
+  --color-blue-2: #21566d;
+  --color-yellow: #faca06;
 }
 
 * {
@@ -10,6 +12,7 @@
 }
 
 body {
+  font-family: 'Righteous', sans-serif;
   background-color: #f5f5ff;
   height: 100vh;
   display: flex;
@@ -79,4 +82,51 @@ body {
 .flip {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
+}
+
+#gameFinish {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.8);
+
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#gameFinish h1 {
+  color: var(--color-yellow);
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+#gameFinish h2 {
+  color: var(--color-blue);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+#gameFinish button {
+  font-family: 'Righteous', sans-serif;
+  background-color: var(--color-blue);
+  color: var(--color-black);
+  border: 0.2rem solid var(--color-black);
+  border-radius: 0.3rem;
+  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.4);
+  padding: 0.5rem 3rem;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  transition: 0.2s;
+}
+
+#gameFinish button:hover {
+  cursor: pointer;
+  color: var(--color-yellow);
+  background-color: var(--color-blue-2);
+  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.8);
 }

@@ -50,7 +50,13 @@ const flipped = (event) => {
 
   if (game.secondCard) {
     if (game.checkMatch()) {
-      if (game.checkWinner()) console.log('Winner!');
+      if (game.checkWinner()) {
+        console.log('Winner!');
+        const gameBoard = document.querySelector('#gameBoard');
+        const gameOverLayer = document.querySelector('#gameFinish');
+        gameBoard.style.filter = 'blur(4px)';
+        gameOverLayer.style.display = 'flex';
+      }
       game.clearCards();
     } else {
       setTimeout(() => {
