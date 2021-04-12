@@ -49,8 +49,11 @@ body {
   align-items: center;
 
   -webkit-transition: transform 0.4s;
+  -moz-transition: transform 0.4s;
   transition: transform 0.4s;
+
   -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
@@ -67,20 +70,24 @@ body {
   align-items: center;
 
   -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
 .card-front {
   -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
 
 .card-back {
-  width: 90%;
+  width: 100%;
+  transform: rotateX(0deg);
 }
 
 .flip {
   -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
 

@@ -13,19 +13,19 @@ let game = {
     'pikachu',
     'psyduck',
     'squirtle',
-    'vulpix',
+    'vulpix'
   ],
 
   createCards: function () {
-    this.cards = this.pokemons.map((pokemon) => {
-      return this.createPairFromCards(pokemon);
-    });
+    this.cards = this.pokemons.map(pokemon => {
+      return this.createPairFromCards(pokemon)
+    })
 
-    this.cards = this.cards.flatMap((card) => card);
+    this.cards = this.cards.flatMap(card => card)
 
-    this.shuffleCards(this.cards);
+    this.shuffleCards(this.cards)
 
-    return this.cards;
+    return this.cards
   },
 
   createPairFromCards: function (pokemon) {
@@ -33,75 +33,74 @@ let game = {
       {
         id: this.generateId(pokemon),
         name: pokemon,
-        flipped: false,
+        flipped: false
       },
       {
         id: this.generateId(pokemon),
         name: pokemon,
-        flipped: false,
-      },
-    ];
+        flipped: false
+      }
+    ]
   },
 
   generateId: function (pokemon) {
-    return pokemon + Math.floor(Math.random() * 10000);
+    return pokemon + Math.floor(Math.random() * 10000)
   },
 
   shuffleCards: function (cards) {
-    let currentIndex = 0;
-    let randomIndex = 0;
+    let currentIndex = 0
+    let randomIndex = 0
 
     while (currentIndex !== cards.length) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-
-      [cards[currentIndex], cards[randomIndex]] = [
+      randomIndex = Math.floor(Math.random() * currentIndex)
+      ;[cards[currentIndex], cards[randomIndex]] = [
         cards[randomIndex],
-        cards[currentIndex],
-      ];
+        cards[currentIndex]
+      ]
 
-      currentIndex++;
+      currentIndex++
     }
   },
 
   setCards: function (id) {
-    let card = this.cards.filter((card) => card.id === id)[0];
+    let card = this.cards.filter(card => card.id === id)[0]
 
     if (this.lockMode || card.flipped) {
-      return false;
+      return false
     }
 
     if (!this.firstCard) {
-      this.firstCard = card;
-      this.firstCard.flipped = true;
-      return true;
+      this.firstCard = card
+      this.firstCard.flipped = true
+      return true
     } else {
-      this.secondCard = card;
-      this.secondCard.flipped = true;
-      this.lockMode = true;
-      return true;
+      this.secondCard = card
+      this.secondCard.flipped = true
+      this.lockMode = true
+      return true
     }
   },
 
   checkMatch: function () {
     if (!this.firstCard || !this.secondCard) {
-      return false;
+      return false
     }
-    return this.firstCard.name === this.secondCard.name;
+    return this.firstCard.name === this.secondCard.name
   },
 
   clearCards: function () {
-    this.firstCard = null;
-    this.secondCard = null;
-    this.lockMode = false;
+    this.firstCard = null
+    this.secondCard = null
+    this.lockMode = false
   },
 
   unflipCards: function () {
-    this.firstCard.flipped = false;
-    this.secondCard.flipped = false;
-    this.clearCards();
+    this.firstCard.flipped = false
+    this.secondCard.flipped = false
+    this.clearCards()
   },
 
   checkWinner: function () {
-    return this.cards.filter((card) => !card.flipped).length == 0;
-  },
-};
+    return this.cards.filter(card => !card.flipped).length == 0
+  }
+}
