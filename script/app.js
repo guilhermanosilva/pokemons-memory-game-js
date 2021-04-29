@@ -4,6 +4,7 @@ const BACK = 'card-back'
 
 const startGame = () => {
   initializeCards(game.createCards())
+  timer()
 }
 
 const initializeCards = cards => {
@@ -47,11 +48,11 @@ const flipped = event => {
   if (game.setCards(current.id)) {
     current.classList.add('flip')
   }
-  
+
   if (game.secondCard) {
     if (game.checkMatch()) {
       if (game.checkWinner()) {
-        setClickLocalStorage()
+        setDataInLocalStorage()
         const gameBoard = document.querySelector('#gameBoard')
         const gameOverLayer = document.querySelector('#gameFinish')
         gameBoard.style.filter = 'blur(4px)'
@@ -79,24 +80,61 @@ const restartGame = () => {
   startGame()
 }
 
-const setClickLocalStorage = () => {
-  const localClicks = JSON.parse(localStorage.getItem('clicks'))
+const setDataInLocalStorage = () => {
+  const localData = JSON.parse(localStorage.getItem('dataGame'))
 
-  if(!localClicks) {
-    const localClicks = []
-    setItem(localClicks)
+  if (!localData) {
+    const localData = []
+    setItem(localData)
   } else {
-    setItem(localClicks)
+    setItem(localData)
   }
 }
 
 // Adds clicks to local storage
-const setItem = (localClicks) => {
-  localClicks.unshift({
+const setItem = (localData) => {
+  localData.unshift({
     game: game.game,
-    clicks: game.clicks
+    clicks: game.clicks,
+    timer: formatTime(game.currentTimer)
   })
-  localStorage.setItem('clicks', JSON.stringify(localClicks))
+  localStorage.setItem('dataGame', JSON.stringify(localData))
+}
+
+const timer = () => {
+  let allSeconds = 0
+  let s = 0
+  let m = 0
+  let h = 0
+
+  setInterval(() => {
+
+    allSeconds++
+
+    s = allSeconds
+    if (allSeconds >= 60) {
+      s = allSeconds % 60
+    }
+
+    m = parseInt(allSeconds / 60)
+    if (m >= 60) {
+      m = allSeconds % 60
+    }
+
+    h = parseInt(allSeconds / 3600)
+
+    // console.log(allSeconds)
+    game.currentTimer = [
+      h,
+      m,
+      s
+    ]
+  }, 1000)
+}
+
+const formatTime = (timer) => {
+  const gameTimer = timer.map(time => String(time).padStart(2, 0))
+  return gameTimer
 }
 
 const restart = document.querySelector('#restartGame')

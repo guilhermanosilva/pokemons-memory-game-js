@@ -3,6 +3,7 @@ let game = {
   lockMode: false,
   firstCard: null,
   secondCard: null,
+  currentTimer: null,
   clicks: 0,
   game: 0,
   pokemons: [
@@ -31,8 +32,7 @@ let game = {
   },
 
   createPairFromCards: function (pokemon) {
-    return [
-      {
+    return [{
         id: this.generateId(pokemon),
         name: pokemon,
         flipped: false
@@ -54,8 +54,8 @@ let game = {
     let randomIndex = 0
 
     while (currentIndex !== cards.length) {
-      randomIndex = Math.floor(Math.random() * currentIndex)
-      ;[cards[currentIndex], cards[randomIndex]] = [
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      [cards[currentIndex], cards[randomIndex]] = [
         cards[randomIndex],
         cards[currentIndex]
       ]
@@ -69,7 +69,7 @@ let game = {
     if (this.lockMode || card.flipped) {
       return false
     }
-    
+
     if (!this.firstCard) {
       this.firstCard = card
       this.firstCard.flipped = true
@@ -105,7 +105,7 @@ let game = {
 
   checkWinner: function () {
     const winner = this.cards.filter(card => !card.flipped).length == 0
-    if(winner){
+    if (winner) {
       this.game++
     }
     return winner
