@@ -137,3 +137,29 @@ body {
   background-color: var(--color-blue-2);
   box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.8);
 }
+
+/* Responsive */
+
+@media (max-width: 1080px) {
+  html {
+    font-size: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 80%;
+  }
+}
+
+@media (max-width: 568px) {
+  html {
+    font-size: 60%;
+  }
+}
+
+@media (max-width: 320px) {
+  html {
+    font-size: 50%;
+  }
+}
