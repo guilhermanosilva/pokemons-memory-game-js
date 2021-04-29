@@ -47,10 +47,11 @@ const flipped = event => {
   if (game.setCards(current.id)) {
     current.classList.add('flip')
   }
-
+  
   if (game.secondCard) {
     if (game.checkMatch()) {
       if (game.checkWinner()) {
+        setClickLocalStorage()
         const gameBoard = document.querySelector('#gameBoard')
         const gameOverLayer = document.querySelector('#gameFinish')
         gameBoard.style.filter = 'blur(4px)'
@@ -76,6 +77,26 @@ const restartGame = () => {
   gameBoard.style.filter = 'none'
   gameOverLayer.style.display = 'none'
   startGame()
+}
+
+const setClickLocalStorage = () => {
+  const localClicks = JSON.parse(localStorage.getItem('clicks'))
+
+  if(!localClicks) {
+    const localClicks = []
+    setItem(localClicks)
+  } else {
+    setItem(localClicks)
+  }
+}
+
+// Adds clicks to local storage
+const setItem = (localClicks) => {
+  localClicks.unshift({
+    game: game.game,
+    clicks: game.clicks
+  })
+  localStorage.setItem('clicks', JSON.stringify(localClicks))
 }
 
 const restart = document.querySelector('#restartGame')

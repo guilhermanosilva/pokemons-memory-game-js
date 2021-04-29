@@ -3,6 +3,8 @@ let game = {
   lockMode: false,
   firstCard: null,
   secondCard: null,
+  clicks: 0,
+  game: 0,
   pokemons: [
     'bulbasaur',
     'butterfree',
@@ -64,19 +66,20 @@ let game = {
 
   setCards: function (id) {
     let card = this.cards.filter(card => card.id === id)[0]
-
     if (this.lockMode || card.flipped) {
       return false
     }
-
+    
     if (!this.firstCard) {
       this.firstCard = card
       this.firstCard.flipped = true
+      this.clicks++
       return true
     } else {
       this.secondCard = card
       this.secondCard.flipped = true
       this.lockMode = true
+      this.clicks++
       return true
     }
   },
@@ -101,6 +104,10 @@ let game = {
   },
 
   checkWinner: function () {
-    return this.cards.filter(card => !card.flipped).length == 0
+    const winner = this.cards.filter(card => !card.flipped).length == 0
+    if(winner){
+      this.game++
+    }
+    return winner
   }
 }
