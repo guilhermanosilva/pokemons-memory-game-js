@@ -1,7 +1,7 @@
 const CARD = 'card'
 const FRONT = 'card-front'
 const BACK = 'card-back'
-let diff = 'easy'
+let diff = 'normal'
 
 const startGame = () => {
   initializeCards(game.createCards(diff))
@@ -53,7 +53,7 @@ const flipped = event => {
   if (game.secondCard) {
     if (game.checkMatch()) {
       if (game.checkWinner()) {
-        setDataInLocalStorage()
+        saveDataInLocalstorage()
         const gameBoard = document.querySelector('#gameBoard')
         const gameOverLayer = document.querySelector('#gameFinish')
         gameBoard.style.filter = 'blur(4px)'
@@ -81,24 +81,29 @@ const restartGame = () => {
   startGame()
 }
 
-const setDataInLocalStorage = () => {
+const prepareDataToSave = () => {
   const localData = JSON.parse(localStorage.getItem('dataGame'))
 
-  if (!localData) {
-    const localData = []
-    setItem(localData)
-  } else {
-    setItem(localData)
-  }
-}
-
-const setItem = (localData) => {
-  localData.unshift({
+  const dataGame = {
     game: game.game,
     clicks: game.clicks,
     timer: formatTime(game.currentTimer),
     difficulty: diff
-  })
+  }
+
+  if (!localData) {
+    const localData = []
+    localData.unshift(dataGame)
+    return localData
+  }
+
+  localData.unshift(dataGame)
+
+  return localData
+}
+
+const saveDataInLocalstorage = () => {
+  const localData = prepareDataToSave()
   localStorage.setItem('dataGame', JSON.stringify(localData))
 }
 
