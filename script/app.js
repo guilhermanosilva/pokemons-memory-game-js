@@ -12,6 +12,8 @@ const initializeCards = cards => {
   const gameBoard = document.getElementById('gameBoard')
   gameBoard.innerHTML = ''
 
+  gameBoard.className = diff
+
   cards.forEach(card => {
     let cardElement = document.createElement('div')
     cardElement.id = card.id
