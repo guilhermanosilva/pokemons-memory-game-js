@@ -19,8 +19,10 @@ let game = {
     'vulpix'
   ],
 
-  createCards: function () {
-    this.cards = this.pokemons.map(pokemon => {
+  createCards: function (diff) {
+    let newPokemons = this.difficultyCards(diff)
+
+    this.cards = newPokemons.map(pokemon => {
       return this.createPairFromCards(pokemon)
     })
 
@@ -109,5 +111,20 @@ let game = {
       this.game++
     }
     return winner
+  },
+
+  difficultyCards: function (diff) {
+    if (diff == 'easy') {
+      return this.pokemons.slice(0, 6)
+    }
+    if (diff == 'normal') {
+      return this.pokemons.slice(0, 8)
+    }
+    if (diff == 'hard') {
+      return this.pokemons
+    }
+    if (diff !== 'easy' && diff !== 'normal' && diff !== 'hard') {
+      return this.pokemons
+    }
   }
 }

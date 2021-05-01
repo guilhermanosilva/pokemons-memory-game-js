@@ -1,9 +1,10 @@
 const CARD = 'card'
 const FRONT = 'card-front'
 const BACK = 'card-back'
+let diff = 'easy'
 
 const startGame = () => {
-  initializeCards(game.createCards())
+  initializeCards(game.createCards(diff))
   timer()
 }
 
@@ -91,12 +92,12 @@ const setDataInLocalStorage = () => {
   }
 }
 
-// Adds clicks to local storage
 const setItem = (localData) => {
   localData.unshift({
     game: game.game,
     clicks: game.clicks,
-    timer: formatTime(game.currentTimer)
+    timer: formatTime(game.currentTimer),
+    difficulty: diff
   })
   localStorage.setItem('dataGame', JSON.stringify(localData))
 }
