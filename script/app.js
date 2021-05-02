@@ -1,18 +1,18 @@
 const CARD = 'card'
 const FRONT = 'card-front'
 const BACK = 'card-back'
-let diff = 'normal'
+let difficulty = 'normal'
 
 const startGame = () => {
-  initializeCards(game.createCards(diff))
+  const cards = game.createCards(difficulty)
+  initializeCards(cards)
   timer()
 }
 
-const initializeCards = cards => {
+const initializeCards = (cards) => {
   const gameBoard = document.getElementById('gameBoard')
   gameBoard.innerHTML = ''
-
-  gameBoard.className = diff
+  gameBoard.className = difficulty
 
   cards.forEach(card => {
     let cardElement = document.createElement('div')
@@ -90,7 +90,7 @@ const prepareDataToSave = () => {
     game: game.game,
     clicks: game.clicks,
     timer: formatTime(game.currentTimer),
-    difficulty: diff
+    difficulty: difficulty
   }
 
   if (!localData) {
@@ -107,6 +107,10 @@ const prepareDataToSave = () => {
 const saveDataInLocalstorage = () => {
   const localData = prepareDataToSave()
   localStorage.setItem('dataGame', JSON.stringify(localData))
+}
+
+const getDataFromLocalstrage = () => {
+  return JSON.parse(localStorage.getItem('dataGame'))
 }
 
 const timer = () => {
@@ -144,6 +148,22 @@ const formatTime = (timer) => {
   const gameTimer = timer.map(time => String(time).padStart(2, 0))
   return gameTimer
 }
+
+const activeButtons = () => {
+  difficultyBtn.forEach((btn) => {
+    btn.disabled = false
+  })
+}
+
+const difficultyBtn = document.querySelectorAll('.difficultyBtn')
+difficultyBtn.forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    activeButtons()
+    btn.disabled = true
+    difficulty = e.target.innerHTML
+    restartGame(e.target.innerHTML)
+  })
+})
 
 const restart = document.querySelector('#restartGame')
 restart.addEventListener('click', restartGame)

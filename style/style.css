@@ -21,6 +21,44 @@ body {
   align-items: center;
 }
 
+button {
+  background-color: var(--color-blue);
+  color: #e5e5e5;
+  box-shadow: 0.2rem 0.5rem 0.7rem rgba(0, 0, 0, 0.2);
+  border: none;
+  font-family: 'Righteous', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  min-width: 10rem;
+  margin: 0.25rem;
+  padding: 0.5rem 0;
+  border-radius: 0.25rem;
+  letter-spacing: 0.1rem;
+
+  transition: all 0.2s;
+}
+
+button:hover {
+  cursor: pointer;
+  filter: brightness(0.9);
+  box-shadow: 0.2rem 0.2rem 0.3rem rgba(0, 0, 0, 0.4);
+}
+
+button:active {
+  position: relative;
+  top: 1px;
+  left: 1px;
+}
+
+button:disabled {
+  filter: brightness(0.6);
+  cursor: not-allowed;
+}
+
+button:disabled:hover {
+  box-shadow: 0.2rem 0.5rem 0.7rem rgba(0, 0, 0, 0.2);
+}
+
 #gameBoard {
   background-color: var(--color-blue);
   border: 1px solid var(--color-blue-2);
@@ -102,6 +140,8 @@ body {
   transform: rotateY(180deg);
 }
 
+/* Game Finish */
+
 #gameFinish {
   position: absolute;
   top: 0;
@@ -173,4 +213,11 @@ body {
   html {
     font-size: 50%;
   }
+}
+
+
+/* Difficulty Buttons */
+
+.difficulty {
+  margin-top: 0.5rem;
 }
