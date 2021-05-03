@@ -7,6 +7,7 @@ const startGame = () => {
   const cards = game.createCards(difficulty)
   initializeCards(cards)
   timer()
+  showTimer()
 }
 
 const initializeCards = (cards) => {
@@ -89,7 +90,7 @@ const prepareDataToSave = () => {
   const dataGame = {
     game: game.game,
     clicks: game.clicks,
-    timer: formatTime(game.currentTimer),
+    timer: game.currentTimer,
     difficulty: difficulty
   }
 
@@ -135,24 +136,36 @@ const timer = () => {
 
     h = parseInt(allSeconds / 3600)
 
-    // console.log(allSeconds)
-    game.currentTimer = [
-      h,
-      m,
-      s
-    ]
+    game.currentTimer = `0${h}:0${m}:0${s}`
   }, 1000)
 }
 
 const formatTime = (timer) => {
-  const gameTimer = timer.map(time => String(time).padStart(2, 0))
-  return gameTimer
+  const gameTime = timer.split(':')
+  gameTime.forEach((time, i) => {
+    const subTime = time.substr(-2)
+    gameTime[i] = subTime
+  })
+  return gameTime.join(':')
+
 }
 
 const activeButtons = () => {
   difficultyBtn.forEach((btn) => {
     btn.disabled = false
   })
+}
+
+const showTimer = () => {
+  if (!game.currentTimer) {
+    const clock = document.getElementsByClassName('clock')[0]
+    setInterval(() => {
+      clock.innerHTML = ''
+      let timer = formatTime(game.currentTimer)
+      clock.innerHTML = timer
+    }, 1000)
+  }
+
 }
 
 const difficultyBtn = document.querySelectorAll('.difficultyBtn')

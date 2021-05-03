@@ -59,6 +59,12 @@ button:disabled:hover {
   box-shadow: 0.2rem 0.5rem 0.7rem rgba(0, 0, 0, 0.2);
 }
 
+/* Game */
+
+.game {
+  display: flex;
+}
+
 #gameBoard {
   background-color: var(--color-blue);
   border: 1px solid var(--color-blue-2);
@@ -138,6 +144,13 @@ button:disabled:hover {
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
   transform: rotateY(180deg);
+}
+
+/* Points */
+
+.points {
+  margin-left: 1rem;
+  ;
 }
 
 /* Game Finish */
