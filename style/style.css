@@ -65,6 +65,48 @@ button:disabled:hover {
   justify-content: center;
 }
 
+.verticalContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* Initial Screen */
+
+#initialScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  z-index: 1;
+
+  justify-content: space-evenly;
+}
+
+.logoContainer {
+  height: 50%;
+}
+
+#initialScreen img {
+  max-width: 35rem;
+  /* margin-bottom: 5rem; */
+}
+
+#initialScreen h1 {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  color: whitesmoke;
+}
+
+#initialScreen button {
+  padding: 1rem 4rem;
+
+}
+
 /* Game */
 
 .game {

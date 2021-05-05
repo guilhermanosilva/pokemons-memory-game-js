@@ -241,10 +241,13 @@ btnPlayPause.addEventListener('click', () => {
 const restart = document.querySelector('#restartGame')
 restart.addEventListener('click', restartGame)
 
-startGame()
+const btnStartGame = document.getElementById('btnStartGame')
+btnStartGame.addEventListener('click', () => {
+  const initialScreen = document.getElementById('initialScreen')
+  initialScreen.style.display = 'none'
+  btnPlayPause.classList.remove('play')
+  btnPlayPause.classList.add('pause')
+  pauseTimer = false
+})
 
-/**
- * TODO: Adicionar botão de iniciar e pausar o tempo
- * TODO: Zerar pontos
- * TODO: Mostrar alerta ao mudar dificuldade que os pontos serão zerados.
- */
+startGame()
