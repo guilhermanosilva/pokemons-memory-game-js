@@ -5,7 +5,7 @@ let game = {
   secondCard: null,
   currentTimer: null,
   clicks: 0,
-  game: 0,
+  game: 1,
   pokemons: [
     'bulbasaur',
     'butterfree',

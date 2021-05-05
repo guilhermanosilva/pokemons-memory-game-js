@@ -59,6 +59,12 @@ button:disabled:hover {
   box-shadow: 0.2rem 0.5rem 0.7rem rgba(0, 0, 0, 0.2);
 }
 
+.horizontalContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Game */
 
 .game {
@@ -146,11 +152,63 @@ button:disabled:hover {
   transform: rotateY(180deg);
 }
 
+/* Timer */
+
+.button.play {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-style: solid;
+  box-sizing: border-box;
+  border-width: calc(1.5rem / 2) 0 calc(1.5rem / 2) 1.5rem;
+  border-color: red blue green yellow;
+  border-color: transparent transparent transparent var(--color-black);
+}
+
+.button.pause {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-style: double;
+  border-width: 0 0 0 calc(1.5rem / 1.5);
+  border-color: var(--color-black);
+}
+
+.buttonContainer {
+  width: 2rem;
+  height: 2rem;
+  padding: 0.25rem;
+  margin: 0.25rem;
+  border-radius: 0.25rem;
+  background-color: var(--color-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonContainer .button.pause {
+  position: relative;
+  left: 0.27rem;
+}
+
 /* Points */
 
-.points {
+.gameData {
   margin-left: 1rem;
-  ;
+}
+
+/* Game paused */
+
+#gamePaused {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
 }
 
 /* Game Finish */

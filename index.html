@@ -22,8 +22,27 @@
         <button class="difficultyBtn">hard</button>
       </section>
     </div>
-    <section class="points">
-      <div class="clock">00:00:00</div>
+    <section class="gameData">
+      <div id="clock" class="clock">
+        <div>
+          00:00:00
+        </div>
+      </div>
+      <div class="horizontalContainer">
+        <div class="buttonContainer">
+          <div id="btnPlayPause" class="button play"></div>
+        </div>
+      </div>
+      <div class="listPoints">
+        <header>
+          <span>Game</span>
+          <span>Clicks</span>
+        </header>
+        <div id="currentPoints">
+          <span>#1</span>
+          <span>6</span>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -33,6 +52,11 @@
     <button id="restartGame">Play again</button>
   </div>
 
+  <div id="gamePaused">
+    <h1>Game Paused</h1>
+    <h2>Click on the button to return to the game</h2>
+    <button id="returnGame">Play</button>
+  </div>
   <script src="./script/game.js"></script>
   <script src="./script/app.js"></script>
 </body>

@@ -2,12 +2,15 @@ const CARD = 'card'
 const FRONT = 'card-front'
 const BACK = 'card-back'
 let difficulty = 'normal'
+let timerInterval = null
+let pauseTimer = true
 
 const startGame = () => {
   const cards = game.createCards(difficulty)
   initializeCards(cards)
-  timer()
+  startTimer()
   showTimer()
+  showClicksAndGame()
 }
 
 const initializeCards = (cards) => {
@@ -51,6 +54,7 @@ const flipped = event => {
 
   if (game.setCards(current.id)) {
     current.classList.add('flip')
+    showClicksAndGame()
   }
 
   if (game.secondCard) {
@@ -61,6 +65,7 @@ const flipped = event => {
         const gameOverLayer = document.querySelector('#gameFinish')
         gameBoard.style.filter = 'blur(4px)'
         gameOverLayer.style.display = 'flex'
+        pauseTimer = true
       }
       game.clearCards()
     } else {
@@ -79,8 +84,13 @@ const flipped = event => {
 const restartGame = () => {
   const gameBoard = document.querySelector('#gameBoard')
   const gameOverLayer = document.querySelector('#gameFinish')
+  const btnPlayPause = document.getElementById('btnPlayPause')
   gameBoard.style.filter = 'none'
   gameOverLayer.style.display = 'none'
+  btnPlayPause.classList.remove('pause')
+  btnPlayPause.classList.add('play')
+  pauseTimer = false
+  clearTimer()
   startGame()
 }
 
@@ -114,15 +124,16 @@ const getDataFromLocalstrage = () => {
   return JSON.parse(localStorage.getItem('dataGame'))
 }
 
-const timer = () => {
+const startTimer = () => {
   let allSeconds = 0
   let s = 0
   let m = 0
   let h = 0
 
-  setInterval(() => {
-
-    allSeconds++
+  timerInterval = setInterval(() => {
+    if (!pauseTimer) {
+      allSeconds++
+    }
 
     s = allSeconds
     if (allSeconds >= 60) {
@@ -140,13 +151,23 @@ const timer = () => {
   }, 1000)
 }
 
+const clearTimer = () => {
+  if (!timerInterval) {
+    return
+  }
+  game.currentTimer = '00:00:00'
+  clearInterval(timerInterval)
+}
+
 const formatTime = (timer) => {
-  const gameTime = timer.split(':')
-  gameTime.forEach((time, i) => {
-    const subTime = time.substr(-2)
-    gameTime[i] = subTime
-  })
-  return gameTime.join(':')
+  if (timer) {
+    const gameTime = timer.split(':')
+    gameTime.forEach((time, i) => {
+      const subTime = time.substr(-2)
+      gameTime[i] = subTime
+    })
+    return gameTime.join(':')
+  }
 
 }
 
@@ -158,7 +179,7 @@ const activeButtons = () => {
 
 const showTimer = () => {
   if (!game.currentTimer) {
-    const clock = document.getElementsByClassName('clock')[0]
+    const clock = document.getElementById('clock')
     setInterval(() => {
       clock.innerHTML = ''
       let timer = formatTime(game.currentTimer)
@@ -168,17 +189,62 @@ const showTimer = () => {
 
 }
 
+const showClicksAndGame = () => {
+  const currentPoints = document.getElementById('currentPoints')
+  currentPoints.innerHTML = `
+    <div>
+      <span>#${game.game}</span>
+      <span>${game.clicks}</span>
+    </div>
+  `
+}
+
+const gameResume = () => {
+  const screenPause = document.getElementById('gamePaused')
+  screenPause.style.display = 'flex'
+}
+
+const btnReturnGame = document.getElementById('returnGame')
+btnReturnGame.addEventListener('click', () => {
+  const screenPause = document.getElementById('gamePaused')
+  screenPause.style.display = 'none'
+  btnPlayPause.classList.remove('play')
+  btnPlayPause.classList.add('pause')
+  pauseTimer = false
+})
+
+
 const difficultyBtn = document.querySelectorAll('.difficultyBtn')
 difficultyBtn.forEach((btn) => {
   btn.addEventListener('click', (e) => {
     activeButtons()
     btn.disabled = true
     difficulty = e.target.innerHTML
-    restartGame(e.target.innerHTML)
+    restartGame()
   })
+})
+
+const btnPlayPause = document.getElementById('btnPlayPause')
+btnPlayPause.addEventListener('click', () => {
+  if (btnPlayPause.classList[1] == 'play') {
+    btnPlayPause.classList.remove('play')
+    btnPlayPause.classList.add('pause')
+    pauseTimer = false
+  } else {
+    btnPlayPause.classList.remove('pause')
+    btnPlayPause.classList.add('play')
+    pauseTimer = true
+    gameResume()
+  }
 })
 
 const restart = document.querySelector('#restartGame')
 restart.addEventListener('click', restartGame)
 
 startGame()
+
+/**
+ * TODO: Adicionar botão de iniciar e pausar o tempo
+ * TODO: Zerar pontos
+ * TODO: Mostrar alerta ao mudar dificuldade que os pontos serão zerados.
+ */
