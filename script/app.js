@@ -191,9 +191,10 @@ const showTimer = () => {
 }
 
 const showClicksAndGame = () => {
+  const data = getDataFromLocalstrage()
   const currentPoints = document.getElementById('currentPoints')
   currentPoints.innerHTML = `
-      <span># ${game.game}</span>
+      <span># ${data? data[0].game + 1: '1'}</span>
       <span>${game.clicks}</span>
   `
 }
