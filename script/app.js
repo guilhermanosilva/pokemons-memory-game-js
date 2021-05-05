@@ -85,10 +85,11 @@ const restartGame = () => {
   const gameBoard = document.querySelector('#gameBoard')
   const gameOverLayer = document.querySelector('#gameFinish')
   const btnPlayPause = document.getElementById('btnPlayPause')
+  game.clicks = 0
   gameBoard.style.filter = 'none'
   gameOverLayer.style.display = 'none'
-  btnPlayPause.classList.remove('pause')
-  btnPlayPause.classList.add('play')
+  btnPlayPause.classList.remove('play')
+  btnPlayPause.classList.add('pause')
   pauseTimer = false
   clearTimer()
   startGame()
@@ -192,10 +193,8 @@ const showTimer = () => {
 const showClicksAndGame = () => {
   const currentPoints = document.getElementById('currentPoints')
   currentPoints.innerHTML = `
-    <div>
-      <span>#${game.game}</span>
+      <span># ${game.game}</span>
       <span>${game.clicks}</span>
-    </div>
   `
 }
 
