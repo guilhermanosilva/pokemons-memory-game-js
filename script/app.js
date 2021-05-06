@@ -7,6 +7,7 @@ let pauseTimer = true
 
 const startGame = () => {
   const cards = game.createCards(difficulty)
+  initializeNumberOfGames()
   initializeCards(cards)
   startTimer()
   showTimer()
@@ -59,7 +60,7 @@ const flipped = event => {
 
   if (game.secondCard) {
     if (game.checkMatch()) {
-      if (game.checkWinner()) {
+      if (game.checkWinner(difficulty)) {
         saveDataInLocalstorage()
         const gameBoard = document.querySelector('#gameBoard')
         const gameOverLayer = document.querySelector('#gameFinish')
@@ -99,11 +100,15 @@ const prepareDataToSave = () => {
   const localData = JSON.parse(localStorage.getItem('dataGame'))
 
   const dataGame = {
-    game: game.game,
+    allGames: game.game,
     clicks: game.clicks,
     timer: game.currentTimer,
-    difficulty: difficulty
+    difficulty: difficulty,
   }
+
+  if (difficulty == 'easy') dataGame.games = game.gameEasy
+  if (difficulty == 'normal') dataGame.games = game.gameNormal
+  if (difficulty == 'hard') dataGame.games = game.gameHard
 
   if (!localData) {
     const localData = []
@@ -193,15 +198,41 @@ const showTimer = () => {
 const showClicksAndGame = () => {
   const data = getDataFromLocalstrage()
   const currentPoints = document.getElementById('currentPoints')
+  let currentGame = null
+
+  if (data) {
+    currentGame = data.filter(games => games.difficulty == difficulty)
+  }
   currentPoints.innerHTML = `
-      <span># ${data? data[0].game + 1: '1'}</span>
-      <span>${game.clicks}</span>
-  `
+    <span># ${currentGame && currentGame.length > 0 ? currentGame[0].games + 1 : '1'}</span>
+    <span>${game.clicks}</span>
+    `
 }
 
 const gameResume = () => {
   const screenPause = document.getElementById('gamePaused')
   screenPause.style.display = 'flex'
+}
+
+const initializeNumberOfGames = () => {
+  const data = getDataFromLocalstrage()
+
+  if (data) {
+    const currentGame = data.filter(games => games.difficulty == difficulty)
+    game.game = data[0].allGames
+
+    game.gameEasy = (difficulty == 'easy' && currentGame.length > 0)
+      ? currentGame[0].games
+      : 0
+
+    game.gameNormal = (difficulty == 'normal' && currentGame.length > 0)
+      ? currentGame[0].games
+      : 0
+
+    game.gameHard = (difficulty == 'hard' && currentGame.length > 0)
+      ? currentGame[0].games
+      : 0
+  }
 }
 
 const btnReturnGame = document.getElementById('returnGame')
@@ -219,7 +250,7 @@ difficultyBtn.forEach((btn) => {
   btn.addEventListener('click', (e) => {
     activeButtons()
     btn.disabled = true
-    difficulty = e.target.innerHTML
+    difficulty = e.target.id
     restartGame()
   })
 })

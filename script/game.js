@@ -6,6 +6,9 @@ let game = {
   currentTimer: null,
   clicks: 0,
   game: 0,
+  gameEasy: 0,
+  gameNormal: 0,
+  gameHard: 0,
   pokemons: [
     'bulbasaur',
     'butterfree',
@@ -35,15 +38,15 @@ let game = {
 
   createPairFromCards: function (pokemon) {
     return [{
-        id: this.generateId(pokemon),
-        name: pokemon,
-        flipped: false
-      },
-      {
-        id: this.generateId(pokemon),
-        name: pokemon,
-        flipped: false
-      }
+      id: this.generateId(pokemon),
+      name: pokemon,
+      flipped: false
+    },
+    {
+      id: this.generateId(pokemon),
+      name: pokemon,
+      flipped: false
+    }
     ]
   },
 
@@ -105,10 +108,13 @@ let game = {
     this.clearCards()
   },
 
-  checkWinner: function () {
+  checkWinner: function (diff) {
     const winner = this.cards.filter(card => !card.flipped).length == 0
     if (winner) {
       this.game++
+      if (diff == 'easy') this.gameEasy++
+      if (diff == 'normal') this.gameNormal++
+      if (diff == 'hard') this.gameHard++
     }
     return winner
   },
