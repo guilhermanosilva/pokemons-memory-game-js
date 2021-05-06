@@ -251,7 +251,6 @@ difficultyBtn.forEach((btn) => {
     activeButtons()
     btn.disabled = true
     difficulty = e.target.id
-    restartGame()
   })
 })
 
@@ -279,6 +278,7 @@ btnStartGame.addEventListener('click', () => {
   btnPlayPause.classList.remove('play')
   btnPlayPause.classList.add('pause')
   pauseTimer = false
+  restartGame()
 })
 
 startGame()
