@@ -332,6 +332,11 @@ button:disabled:hover {
   box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.8);
 }
 
+#btnNewGame{
+  width: 100%;
+  margin: 1rem 0;
+}
+
 /* Responsive */
 
 @media (max-width: 1080px) {

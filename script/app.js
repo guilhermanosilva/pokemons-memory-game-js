@@ -244,7 +244,6 @@ btnReturnGame.addEventListener('click', () => {
   pauseTimer = false
 })
 
-
 const difficultyBtn = document.querySelectorAll('.difficultyBtn')
 difficultyBtn.forEach((btn) => {
   btn.addEventListener('click', (e) => {
@@ -279,6 +278,15 @@ btnStartGame.addEventListener('click', () => {
   btnPlayPause.classList.add('pause')
   pauseTimer = false
   restartGame()
+})
+
+const btnNewGame = document.getElementById('btnNewGame')
+btnNewGame.addEventListener('click', () => {
+  const initialScreen = document.getElementById('initialScreen')
+  initialScreen.style.display = 'flex'
+  btnPlayPause.classList.remove('pause')
+  btnPlayPause.classList.add('play')
+  pauseTimer = true
 })
 
 startGame()
