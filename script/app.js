@@ -282,11 +282,30 @@ btnStartGame.addEventListener('click', () => {
 
 const btnNewGame = document.getElementById('btnNewGame')
 btnNewGame.addEventListener('click', () => {
-  const initialScreen = document.getElementById('initialScreen')
-  initialScreen.style.display = 'flex'
+  const alert = document.getElementsByClassName('containerAlert')[0]
+  alert.style.display = 'flex'
   btnPlayPause.classList.remove('pause')
   btnPlayPause.classList.add('play')
   pauseTimer = true
+})
+
+
+const alertButtons = document.querySelectorAll('.containerAlertButtons button')
+alertButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const initialScreen = document.getElementById('initialScreen')
+    const alert = document.getElementsByClassName('containerAlert')[0]
+    if (btn.id == 'btnNo') {
+      alert.style.display = 'none'
+      btnPlayPause.classList.remove('play')
+      btnPlayPause.classList.add('pause')
+      pauseTimer = false
+    }
+    if (btn.id == 'btnOk') {
+      alert.style.display = 'none'
+      initialScreen.style.display = 'flex'
+    }
+  })
 })
 
 startGame()

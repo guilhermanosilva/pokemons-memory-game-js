@@ -72,6 +72,43 @@ button:disabled:hover {
   flex-direction: column;
 }
 
+.containerAlert {
+  display: none;
+  background-color: #21566d63;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+#alertGame {
+  background-color: white;
+  padding: 2rem;
+}
+
+#alertGame h1, p {
+  margin-bottom: 1rem;
+}
+
+#alertGame .containerAlertButtons {
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+#alertGame button {
+  color: white;
+  border: 1px solid var(--color-blue);
+}
+
+#alertGame .containerAlertButtons #btnNo{
+  background-color: white;
+  border: 1px solid var(--color-blue);
+  color: var(--color-blue);
+}
+
+/* #alertGame p */
+
 /* Initial Screen */
 
 #initialScreen {
