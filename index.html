@@ -52,10 +52,49 @@
     </section>
   </main>
 
-  <div id="gameFinish">
-    <h1>Congratulations</h1>
-    <h2>You finished the game</h2>
-    <button id="restartGame">Play again</button>
+  <div id="gameFinish" class="verticalContainer">
+    <div class="congratulations verticalContainer">
+      <h1>Congratulations</h1>
+      <button id="restartGame">Play again</button>
+    </div>
+
+    <div id="score" class="verticalContainer">
+      <h2>score</h2>
+      <section class="score horizontalContainer">
+        <div class="containerScore">
+          <h3>easy</h3>
+          <div class="containerData headerScore">
+            <span>Game</span>
+            <span>Clicks</span>
+            <span>Timer</span>
+          </div>
+          <div id="easyPoints">
+          </div>
+        </div>
+
+        <div class="containerScore">
+          <h3>normal</h3>
+          <div class="containerData headerScore">
+            <span>Game</span>
+            <span>Clicks</span>
+            <span>Timer</span>
+          </div>
+          <div id="normalPoints" class="verticalContainer">
+          </div>
+        </div>
+
+        <div class="containerScore">
+          <h3>hard</h3>
+          <div class="containerData headerScore">
+            <span>Game</span>
+            <span>Clicks</span>
+            <span>Timer</span>
+          </div>
+          <div id="hardPoints" class="verticalContainer">
+          </div>
+        </div>
+      </section>
+    </div>
   </div>
 
   <div id="gamePaused">

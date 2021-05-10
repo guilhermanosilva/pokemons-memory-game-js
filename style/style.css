@@ -107,8 +107,6 @@ button:disabled:hover {
   color: var(--color-blue);
 }
 
-/* #alertGame p */
-
 /* Initial Screen */
 
 #initialScreen {
@@ -116,12 +114,13 @@ button:disabled:hover {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   z-index: 1;
 
   justify-content: space-evenly;
+  /* display: ; */
 }
 
 .logoContainer {
@@ -160,7 +159,6 @@ button:disabled:hover {
   gap: 0.7rem;
   padding: 0.7rem;
   border-radius: 1rem;
-
 }
 
 .easy {
@@ -328,25 +326,19 @@ button:disabled:hover {
   left: 0;
   width: 100vw;
   height: 100vh;
+  padding: 2rem;
 
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
 
   display: none;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
 }
 
 #gameFinish h1 {
   color: var(--color-yellow);
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-#gameFinish h2 {
-  color: var(--color-blue);
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  font-size: 5rem;
+  margin-bottom: 2rem;
 }
 
 #gameFinish button {
@@ -373,6 +365,100 @@ button:disabled:hover {
   width: 100%;
   margin: 1rem 0;
 }
+
+/* Scrore */
+
+#score {
+  overflow-y: auto;
+  overflow-x: hidden;
+  justify-content: flex-start;
+  margin-top: 2rem;
+  max-height: 30rem;
+  border-radius: 0.2rem;
+  background-color: rgba(1, 1, 1, 0.5);
+  padding: 1rem;
+  text-transform: uppercase;
+}
+
+#score h2 {
+  color: rgb(209, 209, 209);
+  margin-bottom: 1rem;
+}
+
+#score .score{
+  align-items: flex-start;
+  overflow: auto;
+}
+
+#score .containerScore {
+  text-align: center;
+  background-color: rgba(50, 50, 50, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.2rem;
+  margin: 0 0.5rem;
+  padding-bottom: 1rem;
+}
+
+#score .containerData {
+  display: grid;
+  grid-template-columns: 5rem 5rem 5rem;
+  align-items: center;
+  text-align: center;
+}
+
+#score h3 {
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+  color: rgb(209, 209, 209);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#score .headerScore {
+  width: 100%;
+  padding: 1rem 0 0 0.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-blue);
+}
+
+#score .headerScore span {
+  font-size: 0.9rem;
+  text-transform: capitalize;
+  text-align: center;
+  width: 100%;
+}
+
+#score .lineScore {
+  width: 100%;
+  margin-bottom: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  color: rgb(209, 209, 209);
+  display: flex;
+  justify-content: space-between;
+}
+
+#score .lineScore span {
+  width: 100%
+}
+
+#score ::-webkit-scrollbar {
+  width: 0.7rem;
+}
+
+#score ::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 0.2rem;
+}
+
+#score ::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  border-radius: 0.2rem;
+}
+
+#score ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+
 
 /* Responsive */
 

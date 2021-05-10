@@ -62,9 +62,10 @@ const flipped = event => {
     if (game.checkMatch()) {
       if (game.checkWinner(difficulty)) {
         saveDataInLocalstorage()
-        const gameBoard = document.querySelector('#gameBoard')
+        const gameContainer = document.getElementsByClassName('game')[0]
         const gameOverLayer = document.querySelector('#gameFinish')
-        gameBoard.style.filter = 'blur(4px)'
+        listScore()
+        gameContainer.style.filter = 'blur(4px)'
         gameOverLayer.style.display = 'flex'
         pauseTimer = true
       }
@@ -83,11 +84,11 @@ const flipped = event => {
 }
 
 const restartGame = () => {
-  const gameBoard = document.querySelector('#gameBoard')
+  const gameContainer = document.getElementsByClassName('game')[0]
   const gameOverLayer = document.querySelector('#gameFinish')
   const btnPlayPause = document.getElementById('btnPlayPause')
   game.clicks = 0
-  gameBoard.style.filter = 'none'
+  gameContainer.style.filter = 'none'
   gameOverLayer.style.display = 'none'
   btnPlayPause.classList.remove('play')
   btnPlayPause.classList.add('pause')
@@ -235,6 +236,51 @@ const initializeNumberOfGames = () => {
   }
 }
 
+const listScore = () => {
+  const data = getDataFromLocalstrage()
+  const easyScore = data.filter(point => point.difficulty == 'easy')
+  const normalScore = data.filter(point => point.difficulty == 'normal')
+  const hardScore = data.filter(point => point.difficulty == 'hard')
+
+  const easyPoints = document.getElementById('easyPoints')
+  const normalPoints = document.getElementById('normalPoints')
+  const hardPoints = document.getElementById('hardPoints')
+
+  easyPoints.innerHTML = ''
+  normalPoints.innerHTML = ''
+  hardPoints.innerHTML = ''
+
+  easyScore.map(easy => {
+    easyPoints.innerHTML += `
+    <div class="lineScore containerData">
+      <span># ${easy.games}</span>
+      <span>${easy.clicks}</span>
+      <span>${easy.timer}</span>
+    </div>
+    `
+  })
+
+  normalScore.map(normal => {
+    normalPoints.innerHTML += `
+    <div class="lineScore">
+      <span># ${normal.games}</span>
+      <span>${normal.clicks}</span>
+      <span>${normal.timer}</span>
+    </div>
+    `
+  })
+
+  hardScore.map(hard => {
+    hardPoints.innerHTML += `
+    <div class="lineScore">
+      <span># ${hard.games}</span>
+      <span>${hard.clicks}</span>
+      <span>${hard.timer}</span>
+    </div>
+    `
+  })
+}
+
 const btnReturnGame = document.getElementById('returnGame')
 btnReturnGame.addEventListener('click', () => {
   const screenPause = document.getElementById('gamePaused')
@@ -288,7 +334,6 @@ btnNewGame.addEventListener('click', () => {
   btnPlayPause.classList.add('play')
   pauseTimer = true
 })
-
 
 const alertButtons = document.querySelectorAll('.containerAlertButtons button')
 alertButtons.forEach(btn => {
