@@ -103,7 +103,7 @@ const prepareDataToSave = () => {
   const dataGame = {
     allGames: game.game,
     clicks: game.clicks,
-    timer: game.currentTimer,
+    timer: formatTime(game.currentTimer),
     difficulty: difficulty,
   }
 
