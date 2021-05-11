@@ -1,8 +1,12 @@
 :root {
-  --color-black: #03151d;
-  --color-blue: #468faf;
-  --color-blue-2: #21566d;
-  --color-yellow: #faca06;
+  --white: #f5f5ff;
+  --yellow-500: #ffcb05;
+  --blue-500: #3d7dca;
+  --blue-800: #003a70;
+  --blue-900: #011e3a;
+  
+  --shadow: rgba(0,0,0,0.2);
+  --bg-transparent: rgba(0,0,0,0.75);
 }
 
 * {
@@ -13,7 +17,7 @@
 
 body {
   font-family: 'Righteous', sans-serif;
-  background-color: #f5f5ff;
+  background-color: var(--white);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -22,9 +26,9 @@ body {
 }
 
 button {
-  background-color: var(--color-blue);
-  color: #e5e5e5;
-  box-shadow: 0.2rem 0.5rem 0.7rem rgba(0, 0, 0, 0.2);
+  background-color: var(--blue-500);
+  color: var(--white);
+  box-shadow: 0.2rem 0.5rem 0.7rem var(--shadow);
   border: none;
   font-family: 'Righteous', sans-serif;
   font-weight: bold;
@@ -56,7 +60,7 @@ button:disabled {
 }
 
 button:disabled:hover {
-  box-shadow: 0.2rem 0.5rem 0.7rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0.2rem 0.5rem 0.7rem var(--shadow);
 }
 
 .horizontalContainer {
@@ -74,7 +78,7 @@ button:disabled:hover {
 
 .containerAlert {
   display: none;
-  background-color: #21566d63;
+  background-color: var(--bg-transparent);
   position: fixed;
   top: 0;
   left: 0;
@@ -83,7 +87,7 @@ button:disabled:hover {
 }
 
 #alertGame {
-  background-color: white;
+  background-color: var(--white);
   padding: 2rem;
 }
 
@@ -97,7 +101,7 @@ button:disabled:hover {
 }
 
 #alertGame button {
-  color: white;
+  color: var(--white);
   border: 1px solid var(--color-blue);
 }
 
@@ -115,12 +119,11 @@ button:disabled:hover {
   left: 0;
   width: 100vw;
   min-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
+  background-color: var(--bg-transparent);
+  color: var(--white);
   z-index: 1;
 
   justify-content: space-evenly;
-  /* display: ; */
 }
 
 .logoContainer {
@@ -128,14 +131,14 @@ button:disabled:hover {
 }
 
 #initialScreen img {
-  max-width: 35rem;
-  /* margin-bottom: 5rem; */
+  max-width: 25rem;
+  margin-bottom: 3rem;
 }
 
 #initialScreen h1 {
-  font-size: 4rem;
+  font-size: 5rem;
   margin-bottom: 2rem;
-  color: whitesmoke;
+  color: var(--white);
 }
 
 #initialScreen button {
@@ -149,16 +152,16 @@ button:disabled:hover {
 }
 
 #gameBoard {
-  background-color: var(--color-blue);
-  border: 1px solid var(--color-blue-2);
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.4);
+  background-color: var(--blue-500);
+  border: 1px solid var(--blue-80);
+  box-shadow: 0 0 0.5rem var(--shadow);
 
   max-width: 40rem;
 
   display: grid;
   gap: 0.7rem;
   padding: 0.7rem;
-  border-radius: 1rem;
+  border-radius: 0.2rem;
 }
 
 .easy {
@@ -174,11 +177,11 @@ button:disabled:hover {
 }
 
 .card {
-  background-color: white;
-  box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.4);
+  background-color: var(--white);
+  box-shadow: 0.2rem 0.2rem 0.5rem var(--shadow);
   width: 7rem;
   height: 7rem;
-  border-radius: 0.5rem;
+  border-radius: 0.2rem;
 
   position: relative;
   display: flex;
@@ -237,7 +240,7 @@ button:disabled:hover {
   box-sizing: border-box;
   border-width: calc(1rem / 2) 0 calc(1rem / 2) 1rem;
   border-color: red blue green yellow;
-  border-color: transparent transparent transparent whitesmoke;
+  border-color: transparent transparent transparent var(--white);
 }
 
 .button.pause {
@@ -245,7 +248,7 @@ button:disabled:hover {
   height: 1rem;
   border-style: double;
   border-width: 0 0 0 calc(1.5rem / 1.5);
-  border-color: whitesmoke;
+  border-color: var(--white);
 }
 
 .buttonContainer {
@@ -253,7 +256,7 @@ button:disabled:hover {
   height: 2rem;
   padding: 0.25rem;
   margin: 0.25rem;
-  background-color: var(--color-blue-2);
+  background-color: var(--blue-800);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -270,36 +273,36 @@ button:disabled:hover {
 }
 
 .clock {
-  background-color: var(--color-blue);
-  color: whitesmoke;
+  background-color: var(--blue-500);
+  color: var(--white);
   font-weight: bold;
   font-size: 1.6rem;
   width: 12rem;
   padding: 0.5rem 0;
   margin-bottom: 1rem;
-  /* justify-content: space-around; */
 }
 
 .listPoints {
-  background-color: var(--color-blue);
+  background-color: var(--blue-500);
   padding: 1rem;
 }
 
 .listPoints header {
-  color: var(--color-black);
-  font-size: 1.2rem;
+  color: var(--blue-900);
   padding: 0 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
   text-transform: uppercase;
   justify-content: space-between;
 }
 
 #currentPoints {
-  background-color: var(--color-blue-2);
+  background-color: var(--blue-800);
   color: white;
   font-size: 2rem;
-  padding: 0.5rem 0;
   justify-content: space-between;
-  padding: 0 1rem;
+  padding: 1rem;
+  margin-top: 0.5rem;
 }
 
 /* Game paused */
@@ -310,12 +313,12 @@ button:disabled:hover {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: var(--bg-transparent);
   display: none;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  color: white;
+  color: var(--white);
 }
 
 /* Game Finish */
@@ -328,7 +331,7 @@ button:disabled:hover {
   height: 100vh;
   padding: 2rem;
 
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: var(--bg-transparent);
 
   display: none;
   flex-direction: column;
@@ -336,18 +339,16 @@ button:disabled:hover {
 }
 
 #gameFinish h1 {
-  color: var(--color-yellow);
+  color: var(--yellow-500);
   font-size: 5rem;
   margin-bottom: 2rem;
 }
 
 #gameFinish button {
-  font-family: 'Righteous', sans-serif;
-  background-color: var(--color-blue);
-  color: var(--color-black);
-  border: 0.2rem solid var(--color-black);
-  border-radius: 0.3rem;
-  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.4);
+  background-color: var(--blue-500);
+  color: var(--blue-900);
+  border-radius: 0.2rem;
+  box-shadow: 0 0 0.4rem var(--shadow);
   padding: 0.5rem 3rem;
   font-size: 1.5rem;
   margin-bottom: 1rem;
@@ -356,9 +357,9 @@ button:disabled:hover {
 
 #gameFinish button:hover {
   cursor: pointer;
-  color: var(--color-yellow);
-  background-color: var(--color-blue-2);
-  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.8);
+  color: var(--yellow-500);
+  background-color: var(--blue-800);
+  box-shadow: 0 0 0.4rem var(--bg-transparent);
 }
 
 #btnNewGame{
@@ -369,19 +370,19 @@ button:disabled:hover {
 /* Scrore */
 
 #score {
-  overflow-y: auto;
-  overflow-x: hidden;
-  justify-content: flex-start;
+  background-color: var(--bg-transparent);
   margin-top: 2rem;
   max-height: 30rem;
   border-radius: 0.2rem;
-  background-color: rgba(1, 1, 1, 0.5);
   padding: 1rem;
   text-transform: uppercase;
+  overflow-y: auto;
+  overflow-x: hidden;
+  justify-content: flex-start;
 }
 
 #score h2 {
-  color: rgb(209, 209, 209);
+  color: var(--white);
   margin-bottom: 1rem;
 }
 
@@ -392,7 +393,7 @@ button:disabled:hover {
 
 #score .containerScore {
   text-align: center;
-  background-color: rgba(50, 50, 50, 0.1);
+  background-color: rgba(50, 50, 50, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 0.2rem;
   margin: 0 0.5rem;
@@ -409,7 +410,7 @@ button:disabled:hover {
 #score h3 {
   font-size: 0.9rem;
   padding: 0.5rem 0;
-  color: rgb(209, 209, 209);
+  color: var(--white);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -417,11 +418,12 @@ button:disabled:hover {
   width: 100%;
   padding: 1rem 0 0 0.25rem;
   margin-bottom: 0.5rem;
-  color: var(--color-blue);
+  color: var(--blue-500);
 }
 
 #score .headerScore span {
   font-size: 0.9rem;
+  font-weight: 700;
   text-transform: capitalize;
   text-align: center;
   width: 100%;
@@ -431,7 +433,7 @@ button:disabled:hover {
   width: 100%;
   margin-bottom: 0.25rem;
   padding: 0.25rem 0.5rem;
-  color: rgb(209, 209, 209);
+  color: var(--white);
   display: flex;
   justify-content: space-between;
 }
@@ -445,17 +447,17 @@ button:disabled:hover {
 }
 
 #score ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--shadow);
   border-radius: 0.2rem;
 }
 
 #score ::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.1);
+  background: var(--blue-800);
   border-radius: 0.2rem;
 }
 
 #score ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255,255,255,0.3);
+  background: var(--blue-500);
 }
 
 
