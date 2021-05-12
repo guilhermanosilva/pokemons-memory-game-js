@@ -299,8 +299,9 @@ difficultyBtn.forEach((btn) => {
   })
 })
 
-const btnPlayPause = document.getElementById('btnPlayPause')
-btnPlayPause.addEventListener('click', () => {
+const buttonContainer = document.getElementsByClassName('buttonContainer')[0]
+buttonContainer.addEventListener('click', () => {
+  const btnPlayPause = document.getElementById('btnPlayPause')
   if (btnPlayPause.classList[1] == 'play') {
     btnPlayPause.classList.remove('play')
     btnPlayPause.classList.add('pause')
