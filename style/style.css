@@ -235,6 +235,7 @@ button:active {
 /* Points */
 
 .gameData {
+  width: 12rem;
   margin-left: 1rem;
 }
 
@@ -245,24 +246,24 @@ button:active {
 .clock {
   background-color: var(--blue-500);
   color: var(--white);
+  border-radius: 0.2rem;
   font-weight: bold;
   font-size: 1.6rem;
-  width: 12rem;
-  padding: 0.5rem 0;
+  padding: 0.5rem;
   margin-bottom: 1rem;
+  width: 100%;
 }
 
 .listPoints {
   background-color: var(--blue-500);
-  padding: 1rem;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
 }
 
 .listPoints header {
   color: var(--blue-900);
-  padding: 0 1rem;
-  font-size: 1.2rem;
+  padding: 0 0.5rem;
   font-weight: 700;
-  text-transform: uppercase;
   justify-content: space-between;
 }
 
@@ -271,8 +272,7 @@ button:active {
   color: white;
   font-size: 2rem;
   justify-content: space-between;
-  padding: 1rem;
-  margin-top: 0.5rem;
+  padding: 0.5rem;
 }
 
 /* Pause game */
