@@ -120,7 +120,6 @@ button:active {
   background-color: var(--bg-transparent);
   color: var(--white);
   z-index: 1;
-
   justify-content: space-evenly;
 }
 
@@ -150,6 +149,7 @@ button:active {
 
 .game {
   display: flex;
+  filter: blur(4px);
 }
 
 #gameBoard {

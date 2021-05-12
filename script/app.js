@@ -62,10 +62,9 @@ const flipped = event => {
     if (game.checkMatch()) {
       if (game.checkWinner(difficulty)) {
         saveDataInLocalstorage()
-        const gameContainer = document.getElementsByClassName('game')[0]
         const gameOverLayer = document.querySelector('#gameFinish')
+        toggleBgBlur()
         listScore()
-        gameContainer.style.filter = 'blur(4px)'
         gameOverLayer.style.display = 'flex'
         pauseTimer = true
       }
@@ -281,9 +280,20 @@ const listScore = () => {
   })
 }
 
+const toggleBgBlur = () => {
+  const gameContainer = document.getElementsByClassName('game')[0]
+
+  if (gameContainer.style.filter == 'none') {
+    gameContainer.style.filter = 'blur(4px)'
+  } else {
+    gameContainer.style.filter = 'none'
+  }
+}
+
 const btnReturnGame = document.getElementById('returnGame')
 btnReturnGame.addEventListener('click', () => {
   const screenPause = document.getElementById('gamePaused')
+  toggleBgBlur()
   screenPause.style.display = 'none'
   btnPlayPause.classList.remove('play')
   btnPlayPause.classList.add('pause')
@@ -302,6 +312,7 @@ difficultyBtn.forEach((btn) => {
 const buttonContainer = document.getElementsByClassName('buttonContainer')[0]
 buttonContainer.addEventListener('click', () => {
   const btnPlayPause = document.getElementById('btnPlayPause')
+  toggleBgBlur()
   if (btnPlayPause.classList[1] == 'play') {
     btnPlayPause.classList.remove('play')
     btnPlayPause.classList.add('pause')
@@ -330,6 +341,7 @@ btnStartGame.addEventListener('click', () => {
 const btnNewGame = document.getElementById('btnNewGame')
 btnNewGame.addEventListener('click', () => {
   const alert = document.getElementsByClassName('containerAlert')[0]
+  toggleBgBlur()
   alert.style.display = 'flex'
   btnPlayPause.classList.remove('pause')
   btnPlayPause.classList.add('play')
@@ -342,6 +354,7 @@ alertButtons.forEach(btn => {
     const initialScreen = document.getElementById('initialScreen')
     const alert = document.getElementsByClassName('containerAlert')[0]
     if (btn.id == 'btnNo') {
+      toggleBgBlur()
       alert.style.display = 'none'
       btnPlayPause.classList.remove('play')
       btnPlayPause.classList.add('pause')
