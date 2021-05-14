@@ -61,12 +61,11 @@ const flipped = event => {
   if (game.secondCard) {
     if (game.checkMatch()) {
       if (game.checkWinner(difficulty)) {
-        saveDataInLocalstorage()
         const gameOverLayer = document.querySelector('#gameFinish')
-        toggleBgBlur()
-        listScore()
         gameOverLayer.style.display = 'flex'
-        pauseTimer = true
+        listScore()
+        saveDataInLocalstorage()
+        togglePlayPauseGame()
       }
       game.clearCards()
     } else {
@@ -85,14 +84,12 @@ const flipped = event => {
 const restartGame = () => {
   const gameContainer = document.getElementsByClassName('game')[0]
   const gameOverLayer = document.querySelector('#gameFinish')
-  const btnPlayPause = document.getElementById('btnPlayPause')
   game.clicks = 0
   gameContainer.style.filter = 'none'
   gameOverLayer.style.display = 'none'
-  btnPlayPause.classList.remove('play')
-  btnPlayPause.classList.add('pause')
-  pauseTimer = false
   clearTimer()
+  togglePlayPauseButton()
+  togglePlayPauseTime()
   startGame()
 }
 
@@ -290,14 +287,34 @@ const toggleBgBlur = () => {
   }
 }
 
+const togglePlayPauseButton = () => {
+  const btnPlayPause = document.getElementById('btnPlayPause')
+  if (btnPlayPause.className == 'pause') {
+    btnPlayPause.className = 'play'
+  } else {
+    btnPlayPause.className = 'pause'
+  }
+}
+
+const togglePlayPauseTime = () => {
+  if (pauseTimer == false) {
+    pauseTimer = true
+  } else {
+    pauseTimer = false
+  }
+}
+
+const togglePlayPauseGame = () => {
+  togglePlayPauseButton()
+  togglePlayPauseTime()
+  toggleBgBlur()
+}
+
 const btnReturnGame = document.getElementById('returnGame')
 btnReturnGame.addEventListener('click', () => {
-  const screenPause = document.getElementById('gamePaused')
-  toggleBgBlur()
-  screenPause.style.display = 'none'
-  btnPlayPause.classList.remove('play')
-  btnPlayPause.classList.add('pause')
-  pauseTimer = false
+  const gamePaused = document.getElementById('gamePaused')
+  gamePaused.style.display = 'none'
+  togglePlayPauseGame()
 })
 
 const difficultyBtn = document.querySelectorAll('.difficultyBtn')
@@ -311,41 +328,26 @@ difficultyBtn.forEach((btn) => {
 
 const buttonContainer = document.getElementsByClassName('buttonContainer')[0]
 buttonContainer.addEventListener('click', () => {
-  const btnPlayPause = document.getElementById('btnPlayPause')
-  toggleBgBlur()
-  if (btnPlayPause.classList[1] == 'play') {
-    btnPlayPause.classList.remove('play')
-    btnPlayPause.classList.add('pause')
-    pauseTimer = false
-  } else {
-    btnPlayPause.classList.remove('pause')
-    btnPlayPause.classList.add('play')
-    pauseTimer = true
-    gameResume()
-  }
+  const gamePaused = document.getElementById('gamePaused')
+  gamePaused.style.display = 'flex'
+  togglePlayPauseGame()
 })
 
-const restart = document.querySelector('#restartGame')
-restart.addEventListener('click', restartGame)
+const btnPlayAgain = document.querySelector('#playAgain')
+btnPlayAgain.addEventListener('click', restartGame)
 
 const btnStartGame = document.getElementById('btnStartGame')
 btnStartGame.addEventListener('click', () => {
   const initialScreen = document.getElementById('initialScreen')
   initialScreen.style.display = 'none'
-  btnPlayPause.classList.remove('play')
-  btnPlayPause.classList.add('pause')
-  pauseTimer = false
   restartGame()
 })
 
 const btnNewGame = document.getElementById('btnNewGame')
 btnNewGame.addEventListener('click', () => {
   const alert = document.getElementsByClassName('containerAlert')[0]
-  toggleBgBlur()
   alert.style.display = 'flex'
-  btnPlayPause.classList.remove('pause')
-  btnPlayPause.classList.add('play')
-  pauseTimer = true
+  togglePlayPauseGame()
 })
 
 const alertButtons = document.querySelectorAll('.containerAlertButtons button')
@@ -354,15 +356,13 @@ alertButtons.forEach(btn => {
     const initialScreen = document.getElementById('initialScreen')
     const alert = document.getElementsByClassName('containerAlert')[0]
     if (btn.id == 'btnNo') {
-      toggleBgBlur()
       alert.style.display = 'none'
-      btnPlayPause.classList.remove('play')
-      btnPlayPause.classList.add('pause')
-      pauseTimer = false
+      togglePlayPauseGame()
     }
     if (btn.id == 'btnOk') {
       alert.style.display = 'none'
       initialScreen.style.display = 'flex'
+      clearTimer()
     }
   })
 })
