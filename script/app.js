@@ -2,14 +2,12 @@ const CARD = 'card'
 const FRONT = 'card-front'
 const BACK = 'card-back'
 let difficulty = 'normal'
-let timerInterval = null
-let pauseTimer = true
 
 const startGame = () => {
   const cards = game.createCards(difficulty)
   initializeNumberOfGames()
   initializeCards(cards)
-  startTimer()
+  game.startTimer()
   showTimer()
   showClicksAndGame()
 }
@@ -84,12 +82,14 @@ const flipped = event => {
 const restartGame = () => {
   const gameContainer = document.getElementsByClassName('game')[0]
   const gameOverLayer = document.querySelector('#gameFinish')
-  game.clicks = 0
+
   gameContainer.style.filter = 'none'
   gameOverLayer.style.display = 'none'
-  clearTimer()
+
+  game.clicks = 0
+  game.clearTimer()
+  game.togglePlayPauseTime()
   togglePlayPauseButton()
-  togglePlayPauseTime()
   startGame()
 }
 
@@ -99,7 +99,7 @@ const prepareDataToSave = () => {
   const dataGame = {
     allGames: game.game,
     clicks: game.clicks,
-    timer: formatTime(game.currentTimer),
+    timer: game.formatTime(game.currentTimer),
     difficulty: difficulty,
   }
 
@@ -127,66 +127,12 @@ const getDataFromLocalstrage = () => {
   return JSON.parse(localStorage.getItem('dataGame'))
 }
 
-const startTimer = () => {
-  let allSeconds = 0
-  let s = 0
-  let m = 0
-  let h = 0
-
-  timerInterval = setInterval(() => {
-    if (!pauseTimer) {
-      allSeconds++
-    }
-
-    s = allSeconds
-    if (allSeconds >= 60) {
-      s = allSeconds % 60
-    }
-
-    m = parseInt(allSeconds / 60)
-    if (m >= 60) {
-      m = allSeconds % 60
-    }
-
-    h = parseInt(allSeconds / 3600)
-
-    game.currentTimer = `0${h}:0${m}:0${s}`
-  }, 1000)
-}
-
-const clearTimer = () => {
-  if (!timerInterval) {
-    return
-  }
-  game.currentTimer = '00:00:00'
-  clearInterval(timerInterval)
-}
-
-const formatTime = (timer) => {
-  if (timer) {
-    const gameTime = timer.split(':')
-    gameTime.forEach((time, i) => {
-      const subTime = time.substr(-2)
-      gameTime[i] = subTime
-    })
-    return gameTime.join(':')
-  }
-
-}
-
-const activeButtons = () => {
-  difficultyBtn.forEach((btn) => {
-    btn.disabled = false
-  })
-}
-
 const showTimer = () => {
   if (!game.currentTimer) {
     const clock = document.getElementById('clock')
     setInterval(() => {
       clock.innerHTML = ''
-      let timer = formatTime(game.currentTimer)
-      clock.innerHTML = timer
+      clock.innerHTML = game.currentTimer
     }, 1000)
   }
 
@@ -204,11 +150,6 @@ const showClicksAndGame = () => {
     <span># ${currentGame && currentGame.length > 0 ? currentGame[0].games + 1 : '1'}</span>
     <span>${game.clicks}</span>
     `
-}
-
-const gameResume = () => {
-  const screenPause = document.getElementById('gamePaused')
-  screenPause.style.display = 'flex'
 }
 
 const initializeNumberOfGames = () => {
@@ -296,18 +237,16 @@ const togglePlayPauseButton = () => {
   }
 }
 
-const togglePlayPauseTime = () => {
-  if (pauseTimer == false) {
-    pauseTimer = true
-  } else {
-    pauseTimer = false
-  }
+const togglePlayPauseGame = () => {
+  game.togglePlayPauseTime()
+  togglePlayPauseButton()
+  toggleBgBlur()
 }
 
-const togglePlayPauseGame = () => {
-  togglePlayPauseButton()
-  togglePlayPauseTime()
-  toggleBgBlur()
+const activeButtons = () => {
+  difficultyBtn.forEach((btn) => {
+    btn.disabled = false
+  })
 }
 
 const btnReturnGame = document.getElementById('returnGame')
@@ -362,7 +301,7 @@ alertButtons.forEach(btn => {
     if (btn.id == 'btnOk') {
       alert.style.display = 'none'
       initialScreen.style.display = 'flex'
-      clearTimer()
+      game.clearTimer()
     }
   })
 })
