@@ -11,6 +11,7 @@ let game = {
   gameHard: 0,
   pauseTimer: true,
   timerInterval: null,
+  difficulty: 'normal',
   pokemons: [
     'bulbasaur',
     'butterfree',
@@ -24,8 +25,8 @@ let game = {
     'vulpix'
   ],
 
-  createCards: function (diff) {
-    let newPokemons = this.difficultyCards(diff)
+  createCards: function () {
+    let newPokemons = this.difficultyCards(this.difficulty)
 
     this.cards = newPokemons.map(pokemon => {
       return this.createPairFromCards(pokemon)
@@ -110,13 +111,13 @@ let game = {
     this.clearCards()
   },
 
-  checkWinner: function (diff) {
+  checkWinner: function () {
     const winner = this.cards.filter(card => !card.flipped).length == 0
     if (winner) {
       this.game++
-      if (diff == 'easy') this.gameEasy++
-      if (diff == 'normal') this.gameNormal++
-      if (diff == 'hard') this.gameHard++
+      if (game.difficulty == 'easy') this.gameEasy++
+      if (game.difficulty == 'normal') this.gameNormal++
+      if (game.difficulty == 'hard') this.gameHard++
     }
     return winner
   },
@@ -170,10 +171,7 @@ let game = {
         m = allSeconds % 60
       }
 
-      let time = `0${h}:0${m}:0${s}`
-
-      this.currentTimer = this.formatTime(time)
-
+      this.currentTimer = `0${h}:0${m}:0${s}`
     }, 1000)
   },
 
@@ -182,8 +180,8 @@ let game = {
       return
     }
 
-    this.currentTimer = '00:00:00'
     clearInterval(this.timerInterval)
+    this.currentTimer = '00:00:00'
   },
 
   togglePlayPauseTime: function () {
@@ -192,5 +190,35 @@ let game = {
     } else {
       this.pauseTimer = false
     }
+  },
+
+  prepareDataToSave: function () {
+    const localData = JSON.parse(localStorage.getItem('dataGame'))
+
+    const dataGame = {
+      allGames: this.game,
+      clicks: this.clicks,
+      timer: this.formatTime(this.currentTimer),
+      difficulty: this.difficulty,
+    }
+
+    if (this.difficulty == 'easy') dataGame.games = this.gameEasy
+    if (this.difficulty == 'normal') dataGame.games = this.gameNormal
+    if (this.difficulty == 'hard') dataGame.games = this.gameHard
+
+    if (!localData) {
+      const localData = []
+      localData.unshift(dataGame)
+      return localData
+    }
+
+    localData.unshift(dataGame)
+
+    return localData
+  },
+
+  saveDataInLocalstorage: function () {
+    const localData = this.prepareDataToSave()
+    localStorage.setItem('dataGame', JSON.stringify(localData))
   }
 }
