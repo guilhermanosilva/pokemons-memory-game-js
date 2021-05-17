@@ -9,7 +9,6 @@ const startGame = () => {
     game.clearTimer()
   }
 
-  game.startTimer()
   initializeCards(cards)
   showTimer()
   initializeNumberOfGames()
@@ -92,7 +91,7 @@ const restartGame = () => {
   gameOverLayer.style.display = 'none'
 
   game.clicks = 0
-  game.togglePlayPauseTime()
+  time.togglePlayPauseTime()
   togglePlayPauseButton()
   startGame()
 }
@@ -102,13 +101,11 @@ const getDataFromLocalstrage = () => {
 }
 
 const showTimer = () => {
-  if (!game.currentTimer) {
-    const clock = document.getElementById('clock')
-    setInterval(() => {
-      clock.innerHTML = ''
-      clock.innerHTML = game.formatTime(game.currentTimer)
-    }, 1000)
-  }
+  const clock = document.getElementById('clock')
+  setInterval(() => {
+    clock.innerHTML = ''
+    clock.innerHTML = time.format(time.currentTimer)
+  }, 1000)
 }
 
 const showClicksAndGame = () => {
@@ -211,7 +208,7 @@ const togglePlayPauseButton = () => {
 }
 
 const togglePlayPauseGame = () => {
-  game.togglePlayPauseTime()
+  time.togglePlayPauseTime()
   togglePlayPauseButton()
   toggleBgBlur()
 }
@@ -252,6 +249,7 @@ const startGameBtn = document.getElementById('btnStartGame')
 startGameBtn.addEventListener('click', () => {
   const initialScreen = document.getElementById('initialScreen')
   initialScreen.style.display = 'none'
+  time.start()
   restartGame()
 })
 
@@ -272,6 +270,7 @@ alertButtons.forEach(btn => {
       togglePlayPauseGame()
     }
     if (btn.id == 'btnOk') {
+      time.clear()
       alert.style.display = 'none'
       initialScreen.style.display = 'flex'
     }
