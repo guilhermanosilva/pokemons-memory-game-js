@@ -57,7 +57,6 @@ const flipped = event => {
   if (game.setCards(current.id)) {
     current.classList.add('flip')
     showClicksAndGame()
-    game.prepareDataToSave()
   }
 
   if (game.secondCard) {
@@ -65,7 +64,7 @@ const flipped = event => {
       if (game.checkWinner()) {
         const gameOverLayer = document.querySelector('#gameFinish')
         gameOverLayer.style.display = 'flex'
-        game.saveDataInLocalstorage()
+        persistData.saveDataInLocalstorage()
         togglePlayPauseGame()
         listScore()
       }

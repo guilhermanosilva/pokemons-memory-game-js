@@ -112,9 +112,9 @@ let game = {
     const winner = this.cards.filter(card => !card.flipped).length == 0
     if (winner) {
       this.game++
-      if (game.difficulty == 'easy') this.gameEasy++
-      if (game.difficulty == 'normal') this.gameNormal++
-      if (game.difficulty == 'hard') this.gameHard++
+      if (this.difficulty == 'easy') this.gameEasy++
+      if (this.difficulty == 'normal') this.gameNormal++
+      if (this.difficulty == 'hard') this.gameHard++
     }
     return winner
   },
@@ -133,34 +133,4 @@ let game = {
       return this.pokemons
     }
   },
-
-  prepareDataToSave: function () {
-    const localData = JSON.parse(localStorage.getItem('dataGame'))
-
-    const dataGame = {
-      allGames: this.game,
-      clicks: this.clicks,
-      timer: time.format(time.currentTimer),
-      difficulty: this.difficulty,
-    }
-
-    if (this.difficulty == 'easy') dataGame.games = this.gameEasy
-    if (this.difficulty == 'normal') dataGame.games = this.gameNormal
-    if (this.difficulty == 'hard') dataGame.games = this.gameHard
-
-    if (!localData) {
-      const localData = []
-      localData.unshift(dataGame)
-      return localData
-    }
-
-    localData.unshift(dataGame)
-
-    return localData
-  },
-
-  saveDataInLocalstorage: function () {
-    const localData = this.prepareDataToSave()
-    localStorage.setItem('dataGame', JSON.stringify(localData))
-  }
 }
