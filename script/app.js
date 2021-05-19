@@ -242,7 +242,12 @@ pauseGameBtn.addEventListener('click', () => {
 })
 
 const btnPlayAgain = document.querySelector('#playAgain')
-btnPlayAgain.addEventListener('click', restartGame)
+btnPlayAgain.addEventListener('click', () => {
+  time.clear()
+  time.start()
+  restartGame()
+}
+)
 
 const startGameBtn = document.getElementById('btnStartGame')
 startGameBtn.addEventListener('click', () => {
