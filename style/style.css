@@ -87,8 +87,12 @@ button:active {
 }
 
 #alertGame h1, p {
-  color: var(--blue-900);
+  color: var(--blue-800);
   margin-bottom: 1rem;
+}
+
+#alertGame p {
+  color: var(--blue-500);
 }
 
 #alertGame .containerAlertButtons {
@@ -110,13 +114,13 @@ button:active {
 }
 
 /* Initial Screen */
-
+/* -------------------------------- */
 #initialScreen {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   background-color: var(--bg-transparent);
   color: var(--white);
   z-index: 1;
@@ -178,7 +182,7 @@ button:active {
 }
 
 .card {
-  background-color: var(--white);
+  background-color: white;
   box-shadow: 0.2rem 0.2rem 0.5rem var(--shadow);
   width: 7rem;
   height: 7rem;
@@ -319,13 +323,17 @@ button:active {
   height: 100vh;
   color: var(--grey);
   background-color: var(--bg-transparent);
- }
+}
 
- #gamePaused h1, p {
+#gamePaused h1, p {
    margin-bottom: 1rem;
-  }
+}
 
- #gamePaused .pauseContainer {
+#gamePaused h1{
+  color: var(--blue-800);
+}
+
+#gamePaused .pauseContainer {
   background-color: var(--white);
   color: var(--blue-900);
   box-shadow: 0.5rem 0.5rem 2rem var(--shadow);
@@ -333,9 +341,9 @@ button:active {
   padding: 2rem;
   display: flex;
   flex-direction: column;
- }
+}
 
- #gamePaused #returnGame {
+#gamePaused #returnGame {
   align-self: flex-end;
 }
 
@@ -390,12 +398,12 @@ button:active {
 #score {
   background-color: var(--bg-transparent);
   margin-top: 2rem;
-  max-height: 30rem;
+  /* height: 30rem; */
   border-radius: 0.2rem;
   padding: 1rem;
   text-transform: uppercase;
   overflow-y: auto;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   justify-content: flex-start;
 }
 
@@ -406,7 +414,7 @@ button:active {
 
 #score .score{
   align-items: flex-start;
-  overflow: auto;
+  /* overflow: auto; */
 }
 
 #score .containerScore {
@@ -460,21 +468,21 @@ button:active {
   width: 100%
 }
 
-#score ::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 0.7rem;
 }
 
-#score ::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: var(--shadow);
   border-radius: 0.2rem;
 }
 
-#score ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: var(--blue-800);
   border-radius: 0.2rem;
 }
 
-#score ::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
   background: var(--blue-500);
 }
 
@@ -519,12 +527,261 @@ button:active {
   html {
     font-size: 80%;
   }
+
+  /* Initial Screen */
+
+  #initialScreen {
+    position: device-fixed;
+    background-color: #003a70;
+    justify-content: flex-start;
+    padding: 2rem 0;
+  }
+
+  #initialScreen .logoContainer {
+    flex: 0;
+    margin-bottom: 2.5rem;
+  }
+
+  #initialScreen .logoContainer img {
+    position: relative;
+    left: -0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  #initialScreen #btnStartGame { 
+    margin-bottom: 5rem;
+    min-width: 30rem;
+    min-height: 6rem;
+    font-size: 2rem;
+  }
+
+  #initialScreen .difficultyGame {
+    padding: 1rem;
+
+  }
+  
+  #initialScreen .difficultyButtons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #initialScreen .difficultyBtn {
+    min-width: 28rem;
+    min-height: 4rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+
+  #initialScreen .difficultyBtn:last-child {
+    margin-bottom: 0;
+  }
+
+  #initialScreen .difficultyBtn:disabled {
+    border-color: var(--yellow-500);
+    color: var(--white);
+    background-color: var(--blue-500);
+  }
+
+  /* Game */
+
+  .game {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100vw;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .game #gameBoard {
+    width: 90%;
+    margin: 2rem 0;
+  }
+
+  .game #gameBoard .card {
+    background-color: white;
+    width: 100%;
+    height: 8rem;
+  }
+
+  .game #gameBoard .card img {
+    width: 60%;
+  }
+
+  .game .gameData {
+    width: 90%;
+    margin: 0;
+  }
+
+  .game .gameData .dataContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .game .gameData .dataContainer .clock {
+    height: 7rem;
+    width: 60%;
+    margin: 0;
+  }
+
+  .game .gameData .dataContainer #clock {
+    font-size: 2.5rem;
+  }
+
+  .buttonContainer {
+    margin-left: 1rem;
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .play, .pause {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .pause{
+    position: relative;
+    left: 0.5rem;
+  }
+
+  .game .listPoints {
+    width: 35%;
+    height: 7rem;
+    padding: 0.5rem;
+  }
+
+  .game .listPoints header span {
+    justify-content: space-between;
+    font-size: 1.5rem;
+  }
+
+  .game .listPoints #currentPoints span {
+    font-size: 2.5rem;
+  }
+
+  .game .listPoints #currentPoints span:last-child {
+    margin-right: 1rem;
+  }
+
+  .game #btnNewGame {
+    font-size: 2rem;
+    height: 6rem;
+  }
+
+  /* Game paused */
+
+  #gamePaused .pauseContainer {
+    align-items: center;
+    width: 90%;
+  }
+
+  #gamePaused .pauseContainer h1 {
+    font-size:3rem;
+  }
+
+  #gamePaused .pauseContainer p {
+    font-size:2rem;
+  }
+
+  #gamePaused .pauseContainer #returnGame {
+    width: 30rem;
+    height: 4rem;
+    margin-top: 3rem;
+    align-self: center;
+    font-size:2rem;
+  }
+
+  /* Alert new game */
+
+  #alertGame {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #alertGame h1 {
+    font-size: 3rem;
+  }
+
+  #alertGame p {
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  #alertGame .containerAlertButtons {
+    justify-content: center;
+    min-width: 100%;
+  }
+  
+  #alertGame button {
+    width: 50%;
+    height: 4rem;
+    margin: 1rem;
+    font-size: 1.5rem;
+  }
+
+  /* Game Finish */
+
+  #gameFinish .congratulations h1 {
+    font-size: 4rem;
+  }
+
+  #gameFinish .congratulations #playAgain {
+    width: 30rem;
+    height: 4rem;
+    font-size: 2rem;
+  }
+
+  #gameFinish #score {
+    width: 90%;
+    height: 100%;
+  }
+  
+  #gameFinish #score h2 {
+    font-size: 1.8rem;
+    color: var(--blue-500);
+    margin: 2rem 0;
+  }
+  
+  #gameFinish .score {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  #gameFinish .score .containerScore {
+    margin-bottom: 2rem;
+    width: 98%;
+  }
+
+  #gameFinish .score .containerScore h3 {
+    font-size: 1.2rem;
+    margin: 0.5rem;
+  }
+
+  .containerData {
+    justify-content: space-around;
+  }
+  
+  .containerData.headerScore span {
+    font-size: 1.5rem !important;
+  }
+
+  .containerData span {
+    font-size: 1.5rem;
+  }
+
 }
 
 @media (max-width: 568px) {
   html {
     font-size: 60%;
   }
+  
 }
 
 @media (max-width: 320px) {

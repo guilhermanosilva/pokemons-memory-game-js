@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport"
+    content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
   <title>Memory Game</title>
 
   <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -35,23 +36,27 @@
   <main class="game">
     <div id="gameBoard"></div>
     <section class="gameData">
-      <div class="clock horizontalContainer">
-        <div id="clock">
-          <!-- 00:00:00 -->
-        </div>
-        <div class="horizontalContainer">
-          <div class="buttonContainer">
-            <div id="btnPlayPause" class="play"></div>
+      <div class="dataContainer">
+     
+        <div class="clock horizontalContainer">
+          <div id="clock">
+          </div>
+          <div class="horizontalContainer">
+            <div class="buttonContainer">
+              <div id="btnPlayPause" class="play"></div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="listPoints">
-        <header class="horizontalContainer">
-          <span>Game</span>
-          <span>Clicks</span>
-        </header>
-        <div id="currentPoints" class="horizontalContainer">
+     
+        <div class="listPoints">
+          <header class="horizontalContainer">
+            <span>Game</span>
+            <span>Clicks</span>
+          </header>
+          <div id="currentPoints" class="horizontalContainer">
+          </div>
         </div>
+     
       </div>
       <button id="btnNewGame">New Game</button>
     </section>

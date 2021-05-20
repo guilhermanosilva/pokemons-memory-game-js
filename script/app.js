@@ -168,7 +168,7 @@ const listScore = () => {
 
   normalScore.map(normal => {
     normalPoints.innerHTML += `
-    <div class="lineScore">
+    <div class="lineScore containerData">
       <span># ${normal.games}</span>
       <span>${normal.clicks}</span>
       <span>${normal.timer}</span>
@@ -178,7 +178,7 @@ const listScore = () => {
 
   hardScore.map(hard => {
     hardPoints.innerHTML += `
-    <div class="lineScore">
+    <div class="lineScore containerData">
       <span># ${hard.games}</span>
       <span>${hard.clicks}</span>
       <span>${hard.timer}</span>
