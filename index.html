@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport"
+    content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <title>Memory Game</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style/style.css" />
+</head>
+
+<body>
+  <section id="initialScreen" class="verticalContainer">
+    <div class="logoContainer verticalContainer">
+      <img src="images/logo.png" alt="pokemons logo">
+      <h1>Memory Game</h1>
+    </div>
+    <div class="verticalContainer">
+      <button id="btnStartGame">Start Game</button>
+    </div>
+
+    <section class="difficultyGame verticalContainer">
+      <h2>Select difficulty game</h2>
+      <div class="difficultyButtons">
+        <button id="easy" class="difficultyBtn">easy</button>
+        <button id="normal" disabled class="difficultyBtn">normal</button>
+        <button id="hard" class="difficultyBtn">hard</button>
+      </div>
+    </section>
+
+  </section>
+  <main class="game">
+    <div id="gameBoard"></div>
+    <section class="gameData">
+      <div class="dataContainer">
+     
+        <div class="clock horizontalContainer">
+          <div id="clock">
+          </div>
+          <div class="horizontalContainer">
+            <div class="buttonContainer">
+              <div id="btnPlayPause" class="play"></div>
+            </div>
+          </div>
+        </div>
+     
+        <div class="listPoints">
+          <header class="horizontalContainer">
+            <span>Game</span>
+            <span>Clicks</span>
+          </header>
+          <div id="currentPoints" class="horizontalContainer">
+          </div>
+        </div>
+     
+      </div>
+      <button id="btnNewGame">New Game</button>
+    </section>
+  </main>
+
+  <div id="gameFinish" class="verticalContainer">
+    <div class="congratulations verticalContainer">
+      <h1>Congratulations</h1>
+      <button id="playAgain">Play again</button>
+    </div>
+
+    <div id="score" class="verticalContainer">
+      <h2>score</h2>
+      <section class="score horizontalContainer">
+        <div class="containerScore">
+          <h3>easy</h3>
+          <div class="containerData headerScore">
+            <span>Game</span>
+            <span>Clicks</span>
+            <span>Timer</span>
+          </div>
+          <div id="easyPoints">
+          </div>
+        </div>
+
+        <div class="containerScore">
+          <h3>normal</h3>
+          <div class="containerData headerScore">
+            <span>Game</span>
+            <span>Clicks</span>
+            <span>Timer</span>
+          </div>
+          <div id="normalPoints" class="verticalContainer">
+          </div>
+        </div>
+
+        <div class="containerScore">
+          <h3>hard</h3>
+          <div class="containerData headerScore">
+            <span>Game</span>
+            <span>Clicks</span>
+            <span>Timer</span>
+          </div>
+          <div id="hardPoints" class="verticalContainer">
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div id="gamePaused" class="verticalContainer">
+    <div class="pauseContainer">
+      <h1>Game Paused</h1>
+      <p>Click on the button to return to the game</p>
+      <button id="returnGame">Play</button>
+    </div>
+  </div>
+
+  <div class="containerAlert verticalContainer">
+    <div id="alertGame">
+      <h1>New Game</h1>
+      <P>If you start a new game all current data will be deleted.</P>
+      <div class="containerAlertButtons horizontalContainer">
+        <button id="btnNo">No</button>
+        <button id="btnOk">Ok</button>
+      </div>
+    </div>
+  </div>
+  <script src="./script/time.js"></script>
+  <script src="./script/game.js"></script>
+  <script src="./script/persistData.js"></script>
+  <script src="./script/app.js"></script>
+</body>
+
+</html>

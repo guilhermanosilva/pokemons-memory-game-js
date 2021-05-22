@@ -1,0 +1,791 @@
+:root {
+  --white: #f5f5ff;
+  --grey: #dddddd;
+  --yellow-500: #ffcb05;
+  --blue-500: #3d7dca;
+  --blue-800: #003a70;
+  --blue-900: #011e3a;
+  
+  --shadow: rgba(0,0,0,0.2);
+  --bg-transparent: rgba(0,0,0,0.75);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Righteous', sans-serif;
+  letter-spacing: 0.075rem;
+  background-color: var(--white);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  background-color: var(--blue-500);
+  color: var(--white);
+  box-shadow: 0.2rem 0.5rem 0.7rem var(--shadow);
+
+  border: none;
+  border-radius: 0.2rem;
+  font: 1.2rem 'Righteous', sans-serif;
+  letter-spacing: 0.05rem;
+  text-transform: capitalize;
+
+  padding: 0.5rem 2rem;
+  min-width: 10rem;
+
+  transition: all 0.2s;
+}
+
+button:hover {
+  cursor: pointer;
+  box-shadow: 0.2rem 0.2rem 0.3rem rgba(0, 0, 0, 0.4);
+  background-color: var(--blue-800);
+  color: var(--yellow-500);
+}
+
+button:active {
+  position: relative;
+  top: 1px;
+  left: 1px;
+  background-color: var(--blue-900);
+}
+
+.horizontalContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.verticalContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.containerAlert {
+  display: none;
+  background-color: var(--bg-transparent);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+#alertGame {
+  background-color: var(--white);
+  padding: 2rem;
+}
+
+#alertGame h1, p {
+  color: var(--blue-800);
+  margin-bottom: 1rem;
+}
+
+#alertGame p {
+  color: var(--blue-500);
+}
+
+#alertGame .containerAlertButtons {
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+#alertGame button {
+  margin-left: 0.25rem;
+}
+
+#alertGame #btnNo{
+  background-color: white;
+  color: var(--blue-500);
+}
+
+#alertGame #btnNo:hover {
+  opacity: 0.7;
+}
+
+/* Initial Screen */
+/* -------------------------------- */
+#initialScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-transparent);
+  color: var(--white);
+  z-index: 1;
+  justify-content: space-evenly;
+}
+
+.logoContainer {
+  height: 50%;
+}
+
+#initialScreen img {
+  max-width: 35rem;
+}
+
+#initialScreen h1 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  color: var(--grey);
+}
+
+#btnStartGame {
+  min-width: 15rem;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  padding: 1rem;
+  border: 4px solid var(--blue-800);
+}
+
+/* Game */
+
+.game {
+  display: flex;
+  filter: blur(4px);
+}
+
+#gameBoard {
+  background-color: var(--blue-500);
+  border: 1px solid var(--blue-80);
+  box-shadow: 0 0 0.5rem var(--shadow);
+
+  max-width: 40rem;
+
+  display: grid;
+  gap: 0.7rem;
+  padding: 0.7rem;
+  border-radius: 0.2rem;
+}
+
+.easy {
+  grid-template: 1fr 1fr 1fr/ 1fr 1fr 1fr 1fr;
+}
+
+.normal {
+  grid-template: 1fr 1fr 1fr 1fr/ 1fr 1fr 1fr 1fr;
+}
+
+.hard {
+  grid-template: 1fr 1fr 1fr 1fr 1fr/ 1fr 1fr 1fr 1fr;
+}
+
+.card {
+  background-color: white;
+  box-shadow: 0.2rem 0.2rem 0.5rem var(--shadow);
+  width: 7rem;
+  height: 7rem;
+  border-radius: 0.2rem;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  -webkit-transition: transform 0.4s;
+  -moz-transition: transform 0.4s;
+  transition: transform 0.4s;
+
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.card img {
+  width: 70%;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card-front {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.card-back {
+  width: 100%;
+  transform: rotateX(0deg);
+}
+
+.flip {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+/* Points */
+
+.gameData {
+  width: 12rem;
+  margin-left: 1rem;
+}
+
+#clock {
+  min-width: 8rem;
+}
+
+.clock {
+  background-color: var(--blue-500);
+  color: var(--white);
+  border-radius: 0.2rem;
+  font-weight: bold;
+  font-size: 1.6rem;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.listPoints {
+  background-color: var(--blue-500);
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+}
+
+.listPoints header {
+  color: var(--blue-900);
+  padding: 0 0.5rem;
+  font-weight: 700;
+  justify-content: space-between;
+}
+
+#currentPoints {
+  background-color: var(--blue-800);
+  color: white;
+  font-size: 2rem;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+/* Pause game */
+
+.play {
+  width: 1rem;
+  height: 1rem;
+  border-style: solid;
+  box-sizing: border-box;
+  border-width: calc(1rem / 2) 0 calc(1rem / 2) 1rem;
+  border-color: red blue green yellow;
+  border-color: transparent transparent transparent var(--white);
+}
+
+.pause {
+  width: 1rem;
+  height: 1rem;
+  border-style: double;
+  border-width: 0 0 0 calc(1.5rem / 1.5);
+  border-color: var(--white);
+}
+
+.buttonContainer {
+  width: 2rem;
+  height: 2rem;
+  padding: 0.25rem;
+  margin: 0.25rem;
+  background-color: var(--blue-800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonContainer:hover {
+  cursor: pointer;
+}
+
+#gamePaused {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  color: var(--grey);
+  background-color: var(--bg-transparent);
+}
+
+#gamePaused h1, p {
+   margin-bottom: 1rem;
+}
+
+#gamePaused h1{
+  color: var(--blue-800);
+}
+
+#gamePaused .pauseContainer {
+  background-color: var(--white);
+  color: var(--blue-900);
+  box-shadow: 0.5rem 0.5rem 2rem var(--shadow);
+  border-radius: 0.2rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+#gamePaused #returnGame {
+  align-self: flex-end;
+}
+
+/* Game Finish */
+
+#gameFinish {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 2rem;
+
+  background-color: var(--bg-transparent);
+
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+#gameFinish h1 {
+  color: var(--yellow-500);
+  font-size: 5rem;
+  margin-bottom: 2rem;
+}
+
+#gameFinish button {
+  background-color: var(--blue-500);
+  color: var(--blue-900);
+  border-radius: 0.2rem;
+  box-shadow: 0 0 0.4rem var(--shadow);
+  padding: 0.5rem 3rem;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  transition: 0.2s;
+}
+
+#gameFinish button:hover {
+  cursor: pointer;
+  color: var(--yellow-500);
+  background-color: var(--blue-800);
+  box-shadow: 0 0 0.4rem var(--bg-transparent);
+}
+
+#btnNewGame{
+  width: 100%;
+  margin: 1rem 0;
+}
+
+/* Scrore */
+
+#score {
+  background-color: var(--bg-transparent);
+  margin-top: 2rem;
+  /* height: 30rem; */
+  border-radius: 0.2rem;
+  padding: 1rem;
+  text-transform: uppercase;
+  overflow-y: auto;
+  /* overflow-x: hidden; */
+  justify-content: flex-start;
+}
+
+#score h2 {
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+#score .score{
+  align-items: flex-start;
+  /* overflow: auto; */
+}
+
+#score .containerScore {
+  text-align: center;
+  background-color: rgba(50, 50, 50, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.2rem;
+  margin: 0 0.5rem;
+  padding-bottom: 1rem;
+}
+
+#score .containerData {
+  display: grid;
+  grid-template-columns: 5rem 5rem 5rem;
+  align-items: center;
+  text-align: center;
+}
+
+#score h3 {
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+  color: var(--white);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#score .headerScore {
+  width: 100%;
+  padding: 1rem 0 0 0.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--blue-500);
+}
+
+#score .headerScore span {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  text-align: center;
+  width: 100%;
+}
+
+#score .lineScore {
+  width: 100%;
+  margin-bottom: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  color: var(--white);
+  display: flex;
+  justify-content: space-between;
+}
+
+#score .lineScore span {
+  width: 100%
+}
+
+::-webkit-scrollbar {
+  width: 0.7rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--shadow);
+  border-radius: 0.2rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--blue-800);
+  border-radius: 0.2rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--blue-500);
+}
+
+/* Difficulty Buttons */
+
+.difficultyGame {
+  background-color: var(--bg-transparent);
+  border-radius: 0.2rem;
+  padding: 2rem;
+}
+
+.difficultyGame h2 {
+  color: var(--grey);
+  margin-bottom: 1.5rem;
+}
+
+.difficultyBtn {
+ background-color: var(--blue-800);
+}
+
+.difficultyBtn:disabled {
+  background-color: rgba(50, 50, 50, 0.2);
+  color: var(--blue-500);
+  border: 1px solid var(--blue-800);
+}
+
+
+.difficultyBtn:disabled:hover {
+  background-color: rgba(50, 50, 50, 0.2);
+  cursor:not-allowed;
+}
+
+/* Responsive */
+
+@media (max-width: 1080px) {
+  html {
+    font-size: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 80%;
+  }
+
+  /* Initial Screen */
+
+  #initialScreen {
+    position: device-fixed;
+    background-color: #003a70;
+    justify-content: flex-start;
+    padding: 2rem 0;
+  }
+
+  #initialScreen .logoContainer {
+    flex: 0;
+    margin-bottom: 2.5rem;
+  }
+
+  #initialScreen .logoContainer img {
+    position: relative;
+    left: -0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  #initialScreen #btnStartGame { 
+    margin-bottom: 5rem;
+    min-width: 30rem;
+    min-height: 6rem;
+    font-size: 2rem;
+  }
+
+  #initialScreen .difficultyGame {
+    padding: 1rem;
+
+  }
+  
+  #initialScreen .difficultyButtons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #initialScreen .difficultyBtn {
+    min-width: 28rem;
+    min-height: 4rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+
+  #initialScreen .difficultyBtn:last-child {
+    margin-bottom: 0;
+  }
+
+  #initialScreen .difficultyBtn:disabled {
+    border-color: var(--yellow-500);
+    color: var(--white);
+    background-color: var(--blue-500);
+  }
+
+  /* Game */
+
+  .game {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100vw;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .game #gameBoard {
+    width: 90%;
+    margin: 2rem 0;
+  }
+
+  .game #gameBoard .card {
+    background-color: white;
+    width: 100%;
+    height: 8rem;
+  }
+
+  .game #gameBoard .card img {
+    width: 60%;
+  }
+
+  .game .gameData {
+    width: 90%;
+    margin: 0;
+  }
+
+  .game .gameData .dataContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .game .gameData .dataContainer .clock {
+    height: 7rem;
+    width: 60%;
+    margin: 0;
+  }
+
+  .game .gameData .dataContainer #clock {
+    font-size: 2.5rem;
+  }
+
+  .buttonContainer {
+    margin-left: 1rem;
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .play, .pause {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .pause{
+    position: relative;
+    left: 0.5rem;
+  }
+
+  .game .listPoints {
+    width: 35%;
+    height: 7rem;
+    padding: 0.5rem;
+  }
+
+  .game .listPoints header span {
+    justify-content: space-between;
+    font-size: 1.5rem;
+  }
+
+  .game .listPoints #currentPoints span {
+    font-size: 2.5rem;
+  }
+
+  .game .listPoints #currentPoints span:last-child {
+    margin-right: 1rem;
+  }
+
+  .game #btnNewGame {
+    font-size: 2rem;
+    height: 6rem;
+  }
+
+  /* Game paused */
+
+  #gamePaused .pauseContainer {
+    align-items: center;
+    width: 90%;
+  }
+
+  #gamePaused .pauseContainer h1 {
+    font-size:3rem;
+  }
+
+  #gamePaused .pauseContainer p {
+    font-size:2rem;
+  }
+
+  #gamePaused .pauseContainer #returnGame {
+    width: 30rem;
+    height: 4rem;
+    margin-top: 3rem;
+    align-self: center;
+    font-size:2rem;
+  }
+
+  /* Alert new game */
+
+  #alertGame {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #alertGame h1 {
+    font-size: 3rem;
+  }
+
+  #alertGame p {
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  #alertGame .containerAlertButtons {
+    justify-content: center;
+    min-width: 100%;
+  }
+  
+  #alertGame button {
+    width: 50%;
+    height: 4rem;
+    margin: 1rem;
+    font-size: 1.5rem;
+  }
+
+  /* Game Finish */
+
+  #gameFinish .congratulations h1 {
+    font-size: 4rem;
+  }
+
+  #gameFinish .congratulations #playAgain {
+    width: 30rem;
+    height: 4rem;
+    font-size: 2rem;
+  }
+
+  #gameFinish #score {
+    width: 90%;
+    height: 100%;
+  }
+  
+  #gameFinish #score h2 {
+    font-size: 1.8rem;
+    color: var(--blue-500);
+    margin: 2rem 0;
+  }
+  
+  #gameFinish .score {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  #gameFinish .score .containerScore {
+    margin-bottom: 2rem;
+    width: 98%;
+  }
+
+  #gameFinish .score .containerScore h3 {
+    font-size: 1.2rem;
+    margin: 0.5rem;
+  }
+
+  .containerData {
+    justify-content: space-around;
+  }
+  
+  .containerData.headerScore span {
+    font-size: 1.5rem !important;
+  }
+
+  .containerData span {
+    font-size: 1.5rem;
+  }
+
+}
+
+@media (max-width: 568px) {
+  html {
+    font-size: 60%;
+  }
+  
+}
+
+@media (max-width: 320px) {
+  html {
+    font-size: 50%;
+  }
+}
