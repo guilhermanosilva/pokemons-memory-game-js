@@ -1,38 +1,60 @@
-<h1> Pokemons Memory Game </h1>
+<h1 align="center">
+  <br>
+  <img src="https://github.com/guilhermanosilva/pokemons-memory-game/blob/master/images/logo.png" alt="Pokemons" width="220">
+  <br>
+  Memory Game
+</h1>
 
-<em>Game desenvolvido para fins de estudo e para testar meus conhecimentos nas tecnologias bases do front-end</em>
+<p align="center">Jogo da memória com níveis de dificuldade e lista de pontuação.</p>
 
-<p>
-  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
-  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+<p align="center">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black">
 </p>
+
 <br>
 
-<h3>Screenshots</h3>
+<p align="center"><em>Game desenvolvido para fins de estudo e para testar meus conhecimentos nas tecnologias base do front-end.</em></p>
+<p align="center">Clique <a href="https://guilhermanosilva.github.io/pokemons-memory-game/">aqui</a> para jogar</p>
 
-<div>
-  <img src="https://github.com/guilhermanosilva/pokemons-memory-game/blob/master/screenshots/memory-game-scrrenshot-desktop-1.png" width="300px">
-  <img src="https://github.com/guilhermanosilva/pokemons-memory-game/blob/master/screenshots/memory-game-scrrenshot-desktop-2.png" width="300px">
-  <img src="https://github.com/guilhermanosilva/pokemons-memory-game/blob/master/screenshots/memory-game-scrrenshot-desktop-3.png" width="300px">
-</div>
-
-<div>
-  <img src="https://github.com/guilhermanosilva/pokemons-memory-game/blob/master/screenshots/memory-game-scrrenshot-mobile-1.png" width="150px" style="margin-right: 30px;"> 
-  <img src="https://github.com/guilhermanosilva/pokemons-memory-game/blob/master/screenshots/memory-game-scrrenshot-mobile-2.png" width="150px"> 
-  <img src="https://github.com/guilhermanosilva/pokemons-memory-game/blob/master/screenshots/memory-game-scrrenshot-mobile-3.png" width="150px">
-</div>
-
-<h1></h1>
 <br>
 
-<h3>Informações</h3>
+<p align="center">
+  <kbd>
+    <img width="250" style="border-radius: 5px" src="https://github.com/guilhermanosilva/pokemons-memory-game/blob/master/screenshots/memory-game-scrrenshot-desktop-1.png" alt="Intro game">
+  </kbd>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <kbd>
+    <img width="250" style="border-radius: 5px" src="https://github.com/guilhermanosilva/pokemons-memory-game/blob/master/screenshots/memory-game-scrrenshot-desktop-2.png" alt="cards">
+  </kbd>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <kbd>
+    <img width="250" style="border-radius: 5px" src="https://github.com/guilhermanosilva/pokemons-memory-game/blob/master/screenshots/memory-game-scrrenshot-desktop-3.png" alt="screen finish">
+  </kbd>
+</p>
+
+<p align="center">
+  <kbd>
+    <img width="200" style="border-radius: 5px" src="https://github.com/guilhermanosilva/pokemons-memory-game/blob/master/screenshots/memory-game-scrrenshot-mobile-1.png" alt="Intro game">
+  </kbd>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <kbd>
+    <img width="200" style="border-radius: 5px" src="https://github.com/guilhermanosilva/pokemons-memory-game/blob/master/screenshots/memory-game-scrrenshot-mobile-2.png" alt="cards">
+  </kbd>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <kbd>
+    <img width="200" style="border-radius: 5px" src="https://github.com/guilhermanosilva/pokemons-memory-game/blob/master/screenshots/memory-game-scrrenshot-mobile-3.png" alt="screen finish">
+  </kbd>
+</p>
+
+#
+
+### Informações
 <p>A base do game foi desenvolvida no curso <a href="https://programadorbr.com/">Desenvolvimento Web Full Stack</a> do <a href="https://www.instagram.com/progbr/">Igor Oliveira</a>.</p>
 <p>Clique <a href="https://guilhermanosilva.github.io/jogo-da-memoria/">aqui</a> para ver a versão do game desenvolvida no curso.</p>
 
-<br>
-
-<h3>Minhas implementações no projeto</h3>
+### Minhas implementações no projeto
 
 - Implementação do nível de dificuldade mudando a quantidade de cartas exibidas;
 - Adicição de um sistema de pontuação relacionando a quantidade de clicks e tempo até o término do jogo;
